@@ -1,0 +1,22 @@
+Signature-Version: 1.0
+SHA1-Digest-Manifest: VxNuw3A6WUJna3CkZQ7c6Qfu/d8=
+Created-By: 1.0 (Android SignApk)
+
+Name: META-INF/com/google/android/updater-script
+SHA1-Digest: 8B0+yigmc0XsosOrQi4Oc5CopB8=
+
+Name: META-INF/com/google/android/update-binary
+SHA1-Digest: CSZ7Gyg6X76HeNNSMKPZaNDGFlI=
+
+Name: system/app/Snap/Snap.apk
+SHA1-Digest: /Dac0miCS50H6OkCK8iYIey0XBk=
+
+Name: system/lib/libjni_snapmosaic.so
+SHA1-Digest: d1ST7anJwCK71tCySnkO43TU/wA=
+
+Name: system/lib/libjni_snaptinyplanet.so
+SHA1-Digest: XcDy6fOjjgpJ+Wf6oQzQSVgMDto=
+
+Name: manifest.txt
+SHA1-Digest: E9AldKLWUdaqJEyxE6flQAWhryw=
+

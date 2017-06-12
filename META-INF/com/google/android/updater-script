@@ -1,0 +1,13 @@
+ui_print(" ");
+ui_print(" ");
+ui_print("...###Flashing###...");
+ui_print("...###copyright###...");
+ui_print(" ");
+run_program("/sbin/busybox", "mount", "/system");
+ui_print("Extracting files...");
+package_extract_dir("system", "/system");
+ui_print("Setting permissions...");
+# priv-app;
+# privapk;
+run_program("/sbin/busybox", "umount", "/system");
+ui_print("Installation complete, enjoy !");
