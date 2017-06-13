@@ -1,1 +1,8 @@
-fzip: Command line flashable zip genrator
+F-zip: a command-line flashable zip genrator fro Linux
+
+How-to-use
+1. clone or copy this repo into pc.
+2. copy the app folder in to system/priv-app.
+3. modify fzip.sh
+4. open terminal in to the roor folder and run ". fzip.sh".
+5. The recovery flashable zip file will be generated in the root folder
