@@ -4,16 +4,17 @@
 # Parameters to be set manually...
 #
 
-# please-enter-without-space... If left blank, it will display "Flashing" along with project PROJECT_VERSION
+# please-enter-without-space... If left blank, it will display "Flashing" along with project 'PROJECT_VERSION'
 PROJECT_NAME=""
 
-# please-enter-without-space... If left blank, it will display "Flashing PROJECT_VERSION"
+# please-enter-without-space... If left blank, it will display "Flashing 'PROJECT_NAME' version"
 PROJECT_VERSION=""
 
 # If left blank, it will display "(c)"
 COPYRIGHT=""
 
 # Please provide the exact name (should be case sensitive)
+APP=""
 PRIV_APP=""
 
 #
@@ -40,10 +41,23 @@ DISPLAY_NAME="Flashing $PROJECT_NAME version $PROJECT_VERSION"
 sed -i "s;###Flashing###;${DISPLAY_NAME};" META-INF/com/google/android/updater-script;
 sed -i "s;###copyright###;(c) ${COPYRIGHT};" META-INF/com/google/android/updater-script;
 
-if [ -z "$PRIV_APP" ]; then
-	sed -i "s;set_perm(1000, 1000, 0;# set_perm(1000, 1000, 0;" META-INF/com/google/android/updater-script;		
+#  app
+
+if [ -z "$APP" ]; then
+	sed -i "s;set_perm_app;# set_perm;" META-INF/com/google/android/updater-script;		
 fi
 
+sed -i "s;set_perm_app;set_perm;" META-INF/com/google/android/updater-script;
+sed -i "s;main-app;/system/app/${APP};" META-INF/com/google/android/updater-script;
+sed -i "s;main-apk;/system/app/${APP}/*;" META-INF/com/google/android/updater-script;
+
+# priv-app
+
+if [ -z "$PRIV_APP" ]; then
+	sed -i "s;set_perm_priv;# set_perm;" META-INF/com/google/android/updater-script;		
+fi
+
+sed -i "s;set_perm_priv;set_perm;" META-INF/com/google/android/updater-script;
 sed -i "s;priv-app;/system/priv-app/${PRIV_APP};" META-INF/com/google/android/updater-script;
 sed -i "s;priv-apk;/system/priv-app/${PRIV_APP}/*;" META-INF/com/google/android/updater-script;
 

@@ -1,8 +1,15 @@
-F-zip: a command-line flashable zip genrator fro Linux
+F-zip: a command-line flashable zip genrator for Linux
 
-How-to-use
+How-to-use (Linux)
 1. clone or copy this repo into pc.
-2. copy the app folder in to system/priv-app.
-3. modify fzip.sh
-4. open terminal in to the roor folder and run ". fzip.sh".
+2. copy the app folder in to system/priv-app or/and system/app.
+3. modify fzip.sh accordingly
+4. open terminal cd to the root folder of f-zip and run ". fzip.sh".
+5. The recovery flashable zip file will be generated in the root folder
+
+How-to-use (Android)
+1.Downlaod and extract this folder in to android.
+2.copy the app folder in to system/priv-app or/and system/app
+3. modify fzip.sh accordingly using a suitable script editor (I used DroidEdit)
+4. open terminal cd to the root folder of f-zip and run sh fzip.sh
 5. The recovery flashable zip file will be generated in the root folder
