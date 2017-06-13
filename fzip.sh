@@ -63,7 +63,7 @@ sed -i "s;priv-apk;/system/priv-app/${PRIV_APP}/*;" META-INF/com/google/android/
 
 # generating recovery flashable zip file
 
-zip -r9 --exclude=*.sh* --exclude=*.git* --exclude=*README* $PROJECT_NAME$PROJECT_VERSION$(date +"%Y%m%d").zip *
+zip -r9 --exclude=*.sh* --exclude=*.git* --exclude=*README* --exclude=*placeholder* $PROJECT_NAME$PROJECT_VERSION$(date +"%Y%m%d").zip *
 
 # restoring original updater-script...
 
