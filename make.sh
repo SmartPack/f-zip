@@ -31,10 +31,24 @@ cp META-INF/com/google/android/updater-script $PROJECT_ROOT/backup.sh
 # modifying updater script
 
 DISPLAY_NAME="Flashing $PROJECT_NAME $PROJECT_VERSION"
+if [ -z "$APP" ]; then
+	sed -i "s;set_perm(1000, 1000, 0755, "spapp";# set_perm(1000, 1000, 0755, "spapp");" META-INF/com/google/android/updater-script;
+	sed -i "s;set_perm(1000, 1000, 0755, "spapk";# set_perm(1000, 1000, 0755, "spapk");" META-INF/com/google/android/updater-script;	
+fi
+
+if [ -z "$PRIV_APP" ]; then
+	sed -i "s;set_perm(1000, 1000, 0755, "priv-app");# set_perm(1000, 1000, 0755, "priv-app");" META-INF/com/google/android/updater-script;
+	sed -i "s;set_perm(1000, 1000, 0755, "priv-apk");# set_perm(1000, 1000, 0755, "priv-apk");" META-INF/com/google/android/updater-script;	
+fi
+
 sed -i "s;###Flashing###;${DISPLAY_NAME};" META-INF/com/google/android/updater-script;
 sed -i "s;###copyright###;(c) ${COPYRIGHT};" META-INF/com/google/android/updater-script;
-sed -i "s;# priv-app;set_perm(1000, 1000, 0755, "/system/priv-app/${PRIV_APP}";" META-INF/com/google/android/updater-script;
-sed -i "s;# privapk;set_perm(1000, 1000, 0644, "/system/priv-app/${PRIV_APP}/*";" META-INF/com/google/android/updater-script;
+
+sed -i "s;spapp;/system/app/${APP};" META-INF/com/google/android/updater-script;
+sed -i "s;spapk;/system/app/${APP}/*;" META-INF/com/google/android/updater-script;
+
+sed -i "s;priv-app;/system/priv-app/${PRIV_APP};" META-INF/com/google/android/updater-script;
+sed -i "s;priv-apk;/system/priv-app/${PRIV_APP}/*;" META-INF/com/google/android/updater-script;
 
 # generating recovery flashable zip file
 
