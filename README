@@ -1,17 +1,51 @@
 F-zip: Universal recovery flashable zip generator for Linux & android
+c) sunilpaulmathew@xda-developers.com
 
-How-to-use (Linux)
-1. clone or copy this repo into pc.
+What is F-zip?
+"F-zip is a universal shell script designed to make recovery flashable zip files with a few simple steps“
+
+Where it works?
+It will works on any Linux and Linux based operating systems including android. The Linux system might be native or with in a virtual box or even the bash inside Windows 10.
+
+How-to-use
+1. clone or download this repo into pc.
 2. copy the app folder in to system/priv-app or/and system/app.
-3. copy "boot.img" into the root folder (this feature is presently available only for Samsung Galaxy S5 - klte)
-4. modify fzip.sh accordingly
-5. open terminal cd to the root folder of f-zip and run ". fzip.sh".
-6. The recovery flashable zip file will be generated in the root folder
+3. copy library (typically “.so”) files if any into system/lib (you may create seperate folde(s) depends if it is required by the app)
+4. copy "boot.img" into the root folder (this feature is presently available for Samsung Galaxy S5 (klte) and devices that follows a similar partition structure and naming)
+5. modify fzip.sh accordingly (please see below instructions)
+6. open terminal and cd to the root folder of f-zip 
+7. run ". fzip.sh" (in Linux) or “sh fzip.sh” (in android).
+8. The recovery flashable zip file will be generated in the root folder
 
-How-to-use (Android)
-1.Downlaod and extract this folder in to android.
-2.copy the app folder in to system/priv-app or/and system/app
-3. copy "boot.img" into the root folder (this feature is presently available only for Samsung Galaxy S5 - klte)
-4. modify fzip.sh accordingly using a suitable script editor (I used DroidEdit)
-5. open terminal cd to the root folder of f-zip and run sh fzip.sh
-6. The recovery flashable zip file will be generated in the root folder
+Variables (to be set manually)
+# P1	please-enter-without-space. If left blank, it will display "Flashing" 'PROJECT_VERSION'
+PROJECT_NAME=""
+eg: PROJECT_NAME="SmartPack-Kernel"
+
+# P2	please-enter-without-space... If left blank, it will display "Flashing 'PROJECT_NAME'"
+PROJECT_VERSION=""
+eg: PROJECT_VERSION="v1.0"
+# leave both P1 and P2 blank, if you want to simply display "Flashing" 
+
+# P3	If left blank, it will display "(c)"
+COPYRIGHT=""
+eg: COPYRIGHT="sunilpaulmathew@xda-developers.com”
+
+# P4	Enter y (BOOT="y")if you want to flash a boot.img. If not, enter n (BOOT="n") or just left blank (BOOT="")
+BOOT=""
+
+# P5	Please provide the exact system/app(s) name(s) (should be case sensitive). Please leave blank (APP1="") if you do not have a system/app
+APP1=""
+APP2=""
+APP3=""
+APP4=""
+APP5=""
+	eg: APP1="Gmail"
+
+# P6	Please provide the exact system/priv-app(s) name(s) (should be case sensitive). Please leave blank (PRIV_APP1="") if you do not have a system/priv-app
+PRIV_APP1=""
+PRIV_APP2=""
+PRIV_APP3=""
+PRIV_APP4=""
+PRIV_APP5=""
+	eg: PRIV_APP1="Gmail"

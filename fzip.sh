@@ -1,5 +1,9 @@
 #!/bin/bash
 
+# F-zip: Universal recovery flashable zip generator for Linux & android
+# (c) sunilpaulmathew@xda-developers.com
+#
+
 #
 # ################################## Parameters to be set manually... ##################################
 #
