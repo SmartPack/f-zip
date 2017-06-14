@@ -11,7 +11,7 @@ Where it works?
 It will works on any Linux and Linux based operating systems including android. The Linux system might be native or with in a virtual box or even the bash inside Windows 10.
 
 How-to-use?
-1. clone or download this repo into pc.
+1. clone or download this repo into your Linux PC or Android device.
 2. copy the app folder in to "/system/priv-app" or/and "system/app". You may also copy the “.apk” files directly to “/system/app” or/and “/system/priv-app” (without folder) if your app/ROM supports to do so. 
 3. copy library (typically “.so”) files if any into /system/lib (you may create separate folder(s) if it is required)
 4. copy "boot.img" into the root folder (this feature is presently available for Samsung Galaxy S5 (klte) and devices that follows a similar partition structure and naming). Proper editing of “META-INF/com/google/android/updater-script“ (line#11) will be required for other devices with a different boot partition name. Don’t worry, you can easily find such details from any other working ROM/Kernel zip.
@@ -23,6 +23,7 @@ How-to-use?
 How-to-modify shell script?
 Open “fzip.sh” and carefully edit the following parameters. 
 # Do not touch anything else other than listed here unless you know what you are doing.
+# If you are using an Android devcie, you should use a suitable script editor for making necessory modifications on “fzip.sh” (only tested using DroidEdit).
 # If you are windows, you should use “gedit” or “Notepad++” to edit the “fzip.sh”. Using an non-supported program like ‘notepad’ or “wordpad” likely results the damage of this script.
 
 #
