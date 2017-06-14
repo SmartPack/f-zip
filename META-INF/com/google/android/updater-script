@@ -41,5 +41,5 @@ set_perm(1000, 1000, 0644, "/system/app/./**/*.apk");
 set_perm(1000, 1000, 0644, "/system/priv-app/./**/*.apk");
 run_program("/sbin/busybox", "umount", "/system");
 ui_print("Installation complete, enjoy !");
-ui_print("Thanks for using F-zip");
+ui_print-devmsg("Thanks for using F-zip --- (c) sunilpaulmathew@xda-developers.com ---");
 run_program-sync("/sbin/sync");
