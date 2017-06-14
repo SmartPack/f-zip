@@ -5,31 +5,31 @@
 #
 
 #
-# ################################## Parameters to be set manually... ##################################
+# ################################## Variables to be set manually... ##################################
 #
 
-# P1	please-enter-without-space... If left blank, it will display "Flashing" 'PROJECT_VERSION'
+# P1	please-enter-without-space. If left as such, it will display "Flashing" 'PROJECT_VERSION'
 PROJECT_NAME=""
 
-# P2	please-enter-without-space... If left blank, it will display "Flashing 'PROJECT_NAME'"
+# P2	please-enter-without-space. If left as such, it will display "Flashing 'PROJECT_NAME'"
 PROJECT_VERSION=""
 
-# leave blank both P1 and P2, if you want to simply display "Flashing" 
+# Please leave both P1 and P2 as such, if you want to simply display "Flashing" 
 
-# P3	If left blank, it will display "(c)"
+# P3	If left as such, it will display "(c)"
 COPYRIGHT=""
 
-# P4	Enter y (BOOT="y")if you want to flash a boot.img. If not, enter n (BOOT="n") or just left blank (BOOT="")
+# P4	Enter y (BOOT="y")if you want to flash a boot.img. Please enter n (BOOT="n") or leave as such (BOOT="") if you do not have a boot.img to flash.
 BOOT=""
 
-# P5	Please provide the exact system/app(s) name(s) (should be case sensitive) eg: (APP1="Gmail"). Left blank (APP1="") if you do not have a system/app
+# P5	Please provide the exact system/app(s) name(s) (should be case sensitive). Please leave as such (APP1="") if you do not have a “folder” to be added to "system/app"
 APP1=""
 APP2=""
 APP3=""
 APP4=""
 APP5=""
 
-# P6	Please provide the exact system/priv-app(s) name(s) (should be case sensitive) eg: (PRIV_APP1="Gmail"). Left blank (PRIV_APP1="") if you do not have a system/priv-app
+# P6	Please provide the exact system/priv-app(s) name(s) (should be case sensitive). Please leave as such (PRIV_APP1="") if you do not have a “folder” to be added to "system/priv-app"
 PRIV_APP1=""
 PRIV_APP2=""
 PRIV_APP3=""
@@ -40,7 +40,7 @@ PRIV_APP5=""
 ################################## End... ##################################
 
 #
-# Please do not touch unless you know what you are doing... 
+# System variables. Please do not touch unless you know what you are doing... 
 #
 
 COLOR_RED="\033[0;31m"
