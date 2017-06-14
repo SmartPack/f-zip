@@ -12,8 +12,8 @@ It will works on any Linux and Linux based operating systems including android. 
 
 How-to-use?
 1. clone or download this repo into pc.
-2. copy the app folder in to system/priv-app or/and system/app. You may also copy the “.apk” files directly to “/system/app” or/and “/system/priv-app” (without folder) if your app/ROM supports to do so. 
-3. copy library (typically “.so”) files if any into system/lib (you may create seperate folde(s) depends if it is required by the app)
+2. copy the app folder in to "/system/priv-app" or/and "system/app". You may also copy the “.apk” files directly to “/system/app” or/and “/system/priv-app” (without folder) if your app/ROM supports to do so. 
+3. copy library (typically “.so”) files if any into /system/lib (you may create separate folder(s) if it is required)
 4. copy "boot.img" into the root folder (this feature is presently available for Samsung Galaxy S5 (klte) and devices that follows a similar partition structure and naming). Proper editing of “META-INF/com/google/android/updater-script“ (line#11) will be required for other devices with a different boot partition name. Don’t worry, you can easily find such details from any other working ROM/Kernel zip.
 5. modify fzip.sh accordingly (please see below instructions)
 6. open terminal and cd to the root folder of f-zip 
