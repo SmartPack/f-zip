@@ -6,6 +6,15 @@ ui_print(" ");
 run_program("/sbin/busybox", "mount", "/system");
 ui_print("Extracting files...");
 package_extract_dir("system", "/system");
+# boot.img
+ui_print-boot(" - flashing boot.img");
+package_extract_file-boot("boot.img","/dev/block/platform/msm_sdcc.1/by-name/boot");
+run_program-system("/sbin/fstrim", "-v", "/system");
+run_program-data("/sbin/fstrim", "-v", "/data");
+run_program-cache("/sbin/fstrim", "-v", "/cache");
+unmount-data("/data");
+unmount-system("/system");
+# app permissions
 ui_print("Setting permissions...");
 set_perm_app1(1000, 1000, 0755, "main-app1");
 set_perm_app1(1000, 1000, 0644, "main-apk1");
@@ -30,3 +39,5 @@ set_perm_priv5(1000, 1000, 0644, "priv-apk5");
 set_perm(1000, 1000, 0644, "/system/lib/./**/*.so");
 run_program("/sbin/busybox", "umount", "/system");
 ui_print("Installation complete, enjoy !");
+ui_print("Thanks for using F-zip");
+run_program-sync("/sbin/sync");

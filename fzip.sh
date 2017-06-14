@@ -1,29 +1,39 @@
 #!/bin/bash
 
 #
-# Parameters to be set manually...
+# ################################## Parameters to be set manually... ##################################
 #
 
-# please-enter-without-space... If left blank, it will display "Flashing" along with project 'PROJECT_VERSION'
+# P1	please-enter-without-space... If left blank, it will display "Flashing" 'PROJECT_VERSION'
 PROJECT_NAME=""
 
-# please-enter-without-space... If left blank, it will display "Flashing 'PROJECT_NAME' version"
+# P2	please-enter-without-space... If left blank, it will display "Flashing 'PROJECT_NAME'"
 PROJECT_VERSION=""
 
-# If left blank, it will display "(c)"
+# leave blank both P1 and P2, if you want to simply display "Flashing" 
+
+# P3	If left blank, it will display "(c)"
 COPYRIGHT=""
 
-# Please provide the exact name (should be case sensitive)
+# P4	Enter y (BOOT="y")if you want to flash a boot.img. If not, enter n (BOOT="n") or just left blank (BOOT="")
+BOOT=""
+
+# P5	Please provide the exact system/app(s) name(s) (should be case sensitive) eg: (APP1="Gmail"). Left blank (APP1="") if you do not have a system/app
 APP1=""
 APP2=""
 APP3=""
 APP4=""
 APP5=""
+
+# P6	Please provide the exact system/priv-app(s) name(s) (should be case sensitive) eg: (PRIV_APP1="Gmail"). Left blank (PRIV_APP1="") if you do not have a system/priv-app
 PRIV_APP1=""
 PRIV_APP2=""
 PRIV_APP3=""
 PRIV_APP4=""
 PRIV_APP5=""
+
+#
+################################## End... ##################################
 
 #
 # Please do not touch unless you know what you are doing... 
@@ -34,7 +44,7 @@ COLOR_GREEN="\033[1;32m"
 COLOR_NEUTRAL="\033[0m"
 PROJECT_ROOT=$PWD
 
-echo -e $COLOR_GREEN"\n F-zip: a command-line flashable zip generator for Linux\n"$COLOR_NEUTRAL
+echo -e $COLOR_GREEN"\n F-zip: Universal recovery flashable zip generator for Linux & android\n"$COLOR_NEUTRAL
 #
 echo -e $COLOR_GREEN"\n (c) sunilpaulmathew@xda-developers.com\n"$COLOR_NEUTRAL
 
@@ -42,9 +52,46 @@ echo -e $COLOR_GREEN"\n (c) sunilpaulmathew@xda-developers.com\n"$COLOR_NEUTRAL
 
 cp META-INF/com/google/android/updater-script $PROJECT_ROOT/backup.sh
 
-# modifying updater script
+# modifying updater script for boot.img
 
-DISPLAY_NAME="Flashing $PROJECT_NAME version $PROJECT_VERSION"
+if [ -z "$BOOT" ]; then
+	sed -i "s;ui_print-boot;# ui_print;" META-INF/com/google/android/updater-script;
+	sed -i "s;package_extract_file-boot;# package_extract_file;" META-INF/com/google/android/updater-script;
+	sed -i "s;run_program-system;# run_program;" META-INF/com/google/android/updater-script;
+	sed -i "s;run_program-data;# run_program;" META-INF/com/google/android/updater-script;
+	sed -i "s;run_program-cache;# run_program;" META-INF/com/google/android/updater-script;
+	sed -i "s;unmount-data;# unmount;" META-INF/com/google/android/updater-script;
+	sed -i "s;unmount-system;# unmount;" META-INF/com/google/android/updater-script;
+	sed -i "s;run_program-sync;# run_program;" META-INF/com/google/android/updater-script;
+	mv -f boot.img $PROJECT_ROOT/boot.sh		
+fi
+
+if [ "n" == "$BOOT" ]; then
+			sed -i "s;ui_print-boot;# ui_print;" META-INF/com/google/android/updater-script;
+			sed -i "s;package_extract_file-boot;# package_extract_file;" META-INF/com/google/android/updater-script;
+			sed -i "s;run_program-system;# run_program;" META-INF/com/google/android/updater-script;
+			sed -i "s;run_program-data;# run_program;" META-INF/com/google/android/updater-script;
+			sed -i "s;run_program-cache;# run_program;" META-INF/com/google/android/updater-script;
+			sed -i "s;unmount-data;# unmount;" META-INF/com/google/android/updater-script;
+			sed -i "s;unmount-system;# unmount;" META-INF/com/google/android/updater-script;
+			sed -i "s;run_program-sync;# run_program;" META-INF/com/google/android/updater-script;
+			mv -f boot.img $PROJECT_ROOT/boot.sh
+		fi
+
+if [ "y" == "$BOOT" ]; then
+			sed -i "s;ui_print-boot;ui_print;" META-INF/com/google/android/updater-script;
+			sed -i "s;package_extract_file-boot;package_extract_file;" META-INF/com/google/android/updater-script;
+			sed -i "s;run_program-system;run_program;" META-INF/com/google/android/updater-script;
+			sed -i "s;run_program-data;run_program;" META-INF/com/google/android/updater-script;
+			sed -i "s;run_program-cache;run_program;" META-INF/com/google/android/updater-script;
+			sed -i "s;unmount-data;unmount;" META-INF/com/google/android/updater-script;
+			sed -i "s;unmount-system;unmount;" META-INF/com/google/android/updater-script;
+			sed -i "s;run_program-sync;run_program;" META-INF/com/google/android/updater-script;
+		fi
+
+# modifying updater script for apps
+
+DISPLAY_NAME="Flashing $PROJECT_NAME $PROJECT_VERSION"
 
 sed -i "s;###Flashing###;${DISPLAY_NAME};" META-INF/com/google/android/updater-script;
 sed -i "s;###copyright###;(c) ${COPYRIGHT};" META-INF/com/google/android/updater-script;
@@ -152,6 +199,14 @@ sed -i "s;priv-apk5;/system/priv-app/${PRIV_APP5}/*;" META-INF/com/google/androi
 # generating recovery flashable zip file
 
 zip -r9 --exclude=*.sh* --exclude=*.git* --exclude=*README* --exclude=*placeholder* $PROJECT_NAME$PROJECT_VERSION$(date +"%Y%m%d").zip *
+
+if [ -z "$BOOT" ]; then	
+	mv -f boot.sh $PROJECT_ROOT/boot.img		
+fi
+
+if [ "n" == "$BOOT" ]; then			
+			mv -f boot.sh $PROJECT_ROOT/boot.img
+		fi
 
 # restoring original updater-script...
 
