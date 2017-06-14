@@ -1,16 +1,16 @@
 F-zip: Universal recovery flashable zip generator for Linux & android
 	(c) sunilpaulmathew@xda-developers.com
 
-What is F-zip?
+What is F-zip about?
 "F-zip is a universal shell script designed to make recovery flashable zip files with a few simple steps“
 
-For those it is useful?
+For those it is helpful?
 Anyone (devs/newbies) who has something (boot.img/appxxx.apk/libxxx.so) to flash and do not want to do all the work to make a recovery zip manually
 
 Where it works?
 It will works on any Linux and Linux based operating systems including android. The Linux system might be native or with in a virtual box or even the bash inside Windows 10.
 
-How-to-use
+How-to-use?
 1. clone or download this repo into pc.
 2. copy the app folder in to system/priv-app or/and system/app. You may also copy the “.apk” files directly to “/system/app” or/and “/system/priv-app” (without folder) if your app/ROM supports to do so. 
 3. copy library (typically “.so”) files if any into system/lib (you may create seperate folde(s) depends if it is required by the app)
@@ -20,7 +20,15 @@ How-to-use
 7. run ". fzip.sh" (in Linux) or “sh fzip.sh” (in android).
 8. The recovery flashable zip file will be generated in the root folder
 
-Variables (to be set manually)
+How-to-modify shell script?
+Open “fzip.sh” and carefully edit the following parameters. 
+# Do not touch anything else other than listed here unless you know what you are doing.
+# If you are windows, you should use “gedit” or “Notepad++” to edit the “fzip.sh”. Using an non-supported program like ‘notepad’ or “wordpad” likely results the damage of this script.
+
+#
+# ################################## Variables to be set manually... ##################################
+#
+
 # P1	please-enter-without-space. If left as such, it will display "Flashing" 'PROJECT_VERSION'
 PROJECT_NAME=""
 eg: PROJECT_NAME="SmartPack-Kernel"
@@ -37,7 +45,7 @@ eg: COPYRIGHT="sunilpaulmathew@xda-developers.com”
 # P4	Enter y (BOOT="y")if you want to flash a boot.img. Please enter n (BOOT="n") or leave as such (BOOT="") if you do not have a boot.img to flash.
 BOOT=""
 
-# P5	Please provide the exact system/app(s) name(s) (should be case sensitive). Please leave as such (APP1="") if you do not have a “folder” to be added to "system/app". 
+# P5	Please provide the exact system/app(s) name(s) (should be case sensitive). Please leave as such (APP1="") if you do not have a seperate “folder” to be added to "system/app". 
 APP1=""
 APP2=""
 APP3=""
@@ -45,7 +53,7 @@ APP4=""
 APP5=""
 	eg: APP1="Gmail"
 
-# P6	Please provide the exact system/priv-app(s) name(s) (should be case sensitive). Please leave as such (PRIV_APP1="") if you do not have a “folder” to be added to "system/priv-app"
+# P6	Please provide the exact system/priv-app(s) name(s) (should be case sensitive). Please leave as such (PRIV_APP1="") if you do not have a seperate “folder” to be added to "system/priv-app"
 PRIV_APP1=""
 PRIV_APP2=""
 PRIV_APP3=""
@@ -55,3 +63,7 @@ PRIV_APP5=""
 
 # P7	Please enter n (DEV_MSG="n") if you want to hide thanks message by the developer from your recovery zip. Otherwise, please leave as such (DEV_MSG="") or enter y (DEV_MSG="y").
 DEV_MSG=""
+
+#
+################################## End... ##################################
+#
