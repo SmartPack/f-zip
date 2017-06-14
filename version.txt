@@ -1,0 +1,11 @@
+# F-zip: Universal recovery flashable zip generator for Linux & android
+# (c) sunilpaulmathew@xda-developers.com
+#
+
+#
+# Version				Release date
+#
+
+#
+# Version 1.0.0				June 14, 2017
+#
