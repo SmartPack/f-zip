@@ -39,6 +39,7 @@ set_perm_priv5(1000, 1000, 0644, "priv-apk5");
 set_perm(1000, 1000, 0644, "/system/lib/./**/*.so");
 set_perm(1000, 1000, 0644, "/system/app/./**/*.apk");
 set_perm(1000, 1000, 0644, "/system/priv-app/./**/*.apk");
+set_perm-bootanimation(1000, 1000, 0644, "/system/media/bootanimation.zip");
 run_program("/sbin/busybox", "umount", "/system");
 ui_print("Installation complete, enjoy !");
 ui_print-devmsg("Thanks for using F-zip --- (c) sunilpaulmathew@xda-developers.com ---");

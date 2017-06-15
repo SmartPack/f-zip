@@ -51,6 +51,9 @@ PRIV_APP5=""
 # P7	Please enter n (DEV_MSG="n") if you want to hide thanks message by the developer from your recovery zip. Otherwise, please leave as such (DEV_MSG="") or enter y (DEV_MSG="y").
 DEV_MSG=""
 
+# P8	Please enter y (DEV_MSG="y") if you want to include a "bootanimation.zip" into your recovery zip. Otherwise, please leave as such (DEV_MSG="") or enter n (DEV_MSG="n").
+BOOT_ANIM="y"
+
 #
 # #####	The End	#####
 #
@@ -228,6 +231,20 @@ if [ "n" == "$DEV_MSG" ]; then
 
 if [ "y" == "$DEV_MSG" ]; then
 			sed -i "s;ui_print-devmsg;ui_print;" META-INF/com/google/android/updater-script;
+		fi
+
+# boot animation
+
+if [ -z "$BOOT_ANIM" ]; then
+	sed -i "s;set_perm-bootanimation;# set_perm;" META-INF/com/google/android/updater-script;	
+fi
+
+if [ "n" == "$BOOT_ANIM" ]; then
+			sed -i "s;set_perm-bootanimation;# set_perm;" META-INF/com/google/android/updater-script;
+		fi
+
+if [ "y" == "$BOOT_ANIM" ]; then
+			sed -i "s;set_perm-bootanimation;set_perm;" META-INF/com/google/android/updater-script;
 		fi
 
 # generating recovery flashable zip file
