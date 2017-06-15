@@ -17,7 +17,7 @@
 #
 
 #
-# ################################## Variables to be set manually... ##################################
+# #####	Variables to be set manually...	#####
 #
 
 # P1	please-enter-without-space. If left as such, it will display "Flashing" 'PROJECT_VERSION'
@@ -52,7 +52,7 @@ PRIV_APP5=""
 DEV_MSG=""
 
 #
-################################## End... ##################################
+# #####	The End	#####
 #
 
 #
