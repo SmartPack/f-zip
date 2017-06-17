@@ -52,7 +52,7 @@ PRIV_APP5=""
 DEV_MSG=""
 
 # P8	Please enter y (DEV_MSG="y") if you want to include a "bootanimation.zip" into your recovery zip. Otherwise, please leave as such (DEV_MSG="") or enter n (DEV_MSG="n").
-BOOT_ANIM="y"
+BOOT_ANIM=""
 
 #
 # #####	The End	#####
