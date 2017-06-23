@@ -62,7 +62,10 @@ PRIV_APP4=""
 PRIV_APP5=""
 eg: PRIV_APP1="Gmail"
 
-# P7	Please enter n (DEV_MSG="n") if you want to hide thanks message by the developer from your recovery zip. Otherwise, please leave as such (DEV_MSG="") or enter y (DEV_MSG="y").
+# P7	Please enter y (DEV_MSG="y") if you want to include a "bootanimation.zip" into your recovery zip. Otherwise, please leave as such (DEV_MSG="") or enter n (DEV_MSG="n").
+BOOT_ANIM=""
+
+# P0	Please enter n (DEV_MSG="n") if you want to hide thanks message by the developer from your recovery zip. Otherwise, please leave as such (DEV_MSG="") or enter y (DEV_MSG="y").
 DEV_MSG=""
 
 #

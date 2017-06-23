@@ -48,11 +48,11 @@ PRIV_APP3=""
 PRIV_APP4=""
 PRIV_APP5=""
 
-# P7	Please enter n (DEV_MSG="n") if you want to hide thanks message by the developer from your recovery zip. Otherwise, please leave as such (DEV_MSG="") or enter y (DEV_MSG="y").
-DEV_MSG=""
-
-# P8	Please enter y (DEV_MSG="y") if you want to include a "bootanimation.zip" into your recovery zip. Otherwise, please leave as such (DEV_MSG="") or enter n (DEV_MSG="n").
+# P7	Please enter y (DEV_MSG="y") if you want to include a "bootanimation.zip" into your recovery zip. Otherwise, please leave as such (DEV_MSG="") or enter n (DEV_MSG="n").
 BOOT_ANIM=""
+
+# P0	Please enter n (DEV_MSG="n") if you want to hide thanks message by the developer from your recovery zip. Otherwise, please leave as such (DEV_MSG="") or enter y (DEV_MSG="y").
+DEV_MSG=""
 
 #
 # #####	The End	#####
@@ -219,20 +219,6 @@ sed -i "s;set_perm_priv5;set_perm;" META-INF/com/google/android/updater-script;
 sed -i "s;priv-app5;/system/priv-app/${PRIV_APP5};" META-INF/com/google/android/updater-script;
 sed -i "s;priv-apk5;/system/priv-app/${PRIV_APP5}/*;" META-INF/com/google/android/updater-script;
 
-# dev msg
-
-if [ -z "$DEV_MSG" ]; then
-	sed -i "s;ui_print-devmsg;ui_print;" META-INF/com/google/android/updater-script;	
-fi
-
-if [ "n" == "$DEV_MSG" ]; then
-			sed -i "s;ui_print-devmsg;# ui_print;" META-INF/com/google/android/updater-script;
-		fi
-
-if [ "y" == "$DEV_MSG" ]; then
-			sed -i "s;ui_print-devmsg;ui_print;" META-INF/com/google/android/updater-script;
-		fi
-
 # boot animation
 
 if [ -z "$BOOT_ANIM" ]; then
@@ -245,6 +231,20 @@ if [ "n" == "$BOOT_ANIM" ]; then
 
 if [ "y" == "$BOOT_ANIM" ]; then
 			sed -i "s;set_perm-bootanimation;set_perm;" META-INF/com/google/android/updater-script;
+		fi
+
+# dev msg
+
+if [ -z "$DEV_MSG" ]; then
+	sed -i "s;ui_print-devmsg;ui_print;" META-INF/com/google/android/updater-script;	
+fi
+
+if [ "n" == "$DEV_MSG" ]; then
+			sed -i "s;ui_print-devmsg;# ui_print;" META-INF/com/google/android/updater-script;
+		fi
+
+if [ "y" == "$DEV_MSG" ]; then
+			sed -i "s;ui_print-devmsg;ui_print;" META-INF/com/google/android/updater-script;
 		fi
 
 # generating recovery flashable zip file
