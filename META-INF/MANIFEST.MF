@@ -1,0 +1,15 @@
+Manifest-Version: 1.0
+Created-By: 1.0 (Android SignApk)
+
+Name: META-INF/com/google/android/updater-script
+SHA1-Digest: ZspnUcLJ/2vvG54PmAZu7vwzv4U=
+
+Name: META-INF/com/google/android/update-binary
+SHA1-Digest: 7LjhI2kUKoWfvQFHyInm+pcJigY=
+
+Name: system/media/bootanimation.zip
+SHA1-Digest: tPHuWlx/mcbvgNguRBmImEyXKx4=
+
+Name: manifest.txt
+SHA1-Digest: pADmUobdLz6frVYmn7pss9z1odI=
+
