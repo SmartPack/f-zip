@@ -101,15 +101,13 @@ fi
 
 # system-app(s)
 
-# This part of the script is made with a hope that the users follow chronological order while filling the APP, PRIV-APP section.
-# That is APP1/PRIV_APP1 should be filled before the rest.
-
-if [ -z "$(ls -A system/app/ --ignore=placeholder)" ]; then
-	mv $PROJECT_ROOT/system/app/ $PROJECT_ROOT/.git/
-fi
-
 if [ "y" == "$APP" ]; then
 	sed -i "s;# set_perm_sysapp;set_perm;" $PROJECT_ROOT/META-INF/com/google/android/updater-script;
+else
+	if [ -z "$(ls -A system/app/ --ignore=placeholder)" ]; then
+		# hiding “app” folder since it is empty
+		mv $PROJECT_ROOT/system/app/ $PROJECT_ROOT/.git/
+	fi
 fi
 
 if [ -z "$APP1" ]; then
@@ -154,12 +152,13 @@ fi
 
 # priv-app(s)
 
-if [ -z "$(ls -A system/priv-app/ --ignore=placeholder)" ]; then
-	mv $PROJECT_ROOT/system/priv-app/ $PROJECT_ROOT/.git/
-fi
-
 if [ "y" == "$PRIV_APP" ]; then
 	sed -i "s;# set_perm_privapp;set_perm;" $PROJECT_ROOT/META-INF/com/google/android/updater-script;
+else
+	if [ -z "$(ls -A system/priv-app/ --ignore=placeholder)" ]; then
+		# hiding “priv-app” folder since it is empty
+		mv $PROJECT_ROOT/system/priv-app/ $PROJECT_ROOT/.git/
+	fi
 fi
 
 if [ -z "$PRIV_APP1" ]; then
@@ -204,12 +203,13 @@ fi
 
 # framework
 
-if [ -z "$(ls -A system/framework/ --ignore=placeholder)" ]; then
-	mv $PROJECT_ROOT/system/framework/ $PROJECT_ROOT/.git/
-fi
-
 if [ "y" == "$FRAMEWORK" ]; then
 	sed -i "s;# set_perm_jar;set_perm;" $PROJECT_ROOT/META-INF/com/google/android/updater-script;
+else
+	if [ -z "$(ls -A system/framework/ --ignore=placeholder)" ]; then
+		# hiding “framework” folder since it is empty
+		mv $PROJECT_ROOT/system/framework/ $PROJECT_ROOT/.git/
+	fi
 fi
 
 if [ -e system/framework/framework-res.apk ]; then
@@ -218,12 +218,13 @@ fi
 
 # lib
 
-if [ -z "$(ls -A system/lib/ --ignore=placeholder)" ]; then
-	mv $PROJECT_ROOT/system/lib/ $PROJECT_ROOT/.git/
-fi
-
 if [ "y" == "$LIBRARY" ]; then
 	sed -i "s;# set_perm_lib;set_perm;" $PROJECT_ROOT/META-INF/com/google/android/updater-script;
+else
+	if [ -z "$(ls -A system/lib/ --ignore=placeholder)" ]; then
+		# hiding “lib” folder since it is empty
+		mv $PROJECT_ROOT/system/lib/ $PROJECT_ROOT/.git/
+	fi
 fi
 
 # bootanimation
@@ -231,6 +232,7 @@ fi
 if [ -e system/media/bootanimation.zip ]; then
 	sed -i "s;# set_perm-bootanimation;set_perm;" $PROJECT_ROOT/META-INF/com/google/android/updater-script;
 else
+	# hiding “media” folder since it is empty
 	mv $PROJECT_ROOT/system/media/ $PROJECT_ROOT/.git/
 fi
 
