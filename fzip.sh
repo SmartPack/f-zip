@@ -287,7 +287,7 @@ fi
 
 # generating recovery flashable zip file
 
-zip -r9 --exclude=*.sh* --exclude=*.git* --exclude=*README* --exclude=*version.txt* --exclude=*placeholder* $OUTPUT_FILE *
+zip -r9 --exclude=*.sh* --exclude=*.git* --exclude=*.md* --exclude=*placeholder* $OUTPUT_FILE *
 
 # restoring original updater-script...
 
