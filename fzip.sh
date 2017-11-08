@@ -49,6 +49,8 @@ PRIV_APP=""		# Please enter y (APP="y") if you want to add an app(s) directly to
 
 LIBRARY=""		# Please enter y (LIBRARY="y") if you want to add ".so" file(s) to "/system/lib/"
 
+MODULES=""		# Please enter y (MODULES="y") if you want to add ".ko" file(s) to "/system/lib/modules/"
+
 FRAMEWORK=""		# Please enter y (FRAMEWORK="y") if you want to add ".jar" file(s) to "/system/framework/"
 
 DEV_MSG=""		# Please enter n (DEV_MSG="n") if you want to hide thanks message by the developer from your recovery zip.
@@ -216,14 +218,25 @@ if [ -e system/framework/framework-res.apk ]; then
 	sed -i "s;# set_perm-fwr;set_perm;" $PROJECT_ROOT/META-INF/com/google/android/updater-script;
 fi
 
-# lib
-
+# lib & modules
 if [ "y" == "$LIBRARY" ]; then
 	sed -i "s;# set_perm_lib;set_perm;" $PROJECT_ROOT/META-INF/com/google/android/updater-script;
+	if [ "y" == "$MODULES" ]; then
+		sed -i "s;# set_perm_modules;set_perm;" $PROJECT_ROOT/META-INF/com/google/android/updater-script;
+	else
+		if [ -z "$(ls -A system/lib/modules/ --ignore=placeholder)" ]; then
+			# hiding "modules" folder since it is empty
+			mv $PROJECT_ROOT/system/lib/modules $PROJECT_ROOT/.git/
+		fi
+	fi
 else
-	if [ -z "$(ls -A system/lib/ --ignore=placeholder)" ]; then
-		# hiding “lib” folder since it is empty
-		mv $PROJECT_ROOT/system/lib/ $PROJECT_ROOT/.git/
+	if [ "y" == "$MODULES" ]; then
+		sed -i "s;# set_perm_modules;set_perm;" $PROJECT_ROOT/META-INF/com/google/android/updater-script;
+	else
+		if [ -z "$(ls -A system/lib/ --ignore=placeholder --ignore=modules)" ]; then
+			# hiding “lib” & "modules" directories since they are empty
+			mv $PROJECT_ROOT/system/lib/ $PROJECT_ROOT/.git/
+		fi
 	fi
 fi
 
@@ -294,6 +307,10 @@ fi
 
 if [ -e .git/lib/ ]; then
 	mv $PROJECT_ROOT/.git/lib/ $PROJECT_ROOT/system/
+fi
+
+if [ -e .git/modules/ ]; then
+	mv $PROJECT_ROOT/.git/modules $PROJECT_ROOT/system/lib/
 fi
 
 if [ -e .git/framework/ ]; then
