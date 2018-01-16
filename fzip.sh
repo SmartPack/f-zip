@@ -17,7 +17,7 @@
 #
 
 #
-# #####	Variables to be set manually...	#####
+# ***** ***** *Variables to be configured manually* ***** ***** #
 #
 
 PROJECT_NAME="project-name"		# please-enter-without-space.
@@ -53,10 +53,10 @@ MODULES=""		# Please enter y (MODULES="y") if you want to add ".ko" file(s) to "
 
 FRAMEWORK=""		# Please enter y (FRAMEWORK="y") if you want to add ".jar" file(s) to "/system/framework/"
 
-DEV_MSG=""		# Please enter n (DEV_MSG="n") if you want to hide thanks message by the developer from your recovery zip.
+DEV_MSG=""		# Please enter n (DEV_MSG="n"), if you want to hide thanks message from the developer.
 
 #
-# #####	The End	#####
+# ***** ***** ***** ***** ***THE END*** ***** ***** ***** ***** #
 #
 
 #
@@ -68,9 +68,9 @@ COLOR_GREEN="\033[1;32m"
 COLOR_NEUTRAL="\033[0m"
 PROJECT_ROOT=$PWD
 
-echo -e $COLOR_GREEN"\n F-zip: Universal recovery flashable zip generator for Linux & android\n"$COLOR_NEUTRAL
+echo -e $COLOR_GREEN"\n F-zip: Universal recovery flashable zip generator for Linux & android\n"$COLOR_GREEN
 #
-echo -e $COLOR_GREEN"\n (c) sunilpaulmathew@xda-developers.com\n"$COLOR_NEUTRAL
+echo -e $COLOR_GREEN"\n (c) sunilpaulmathew@xda-developers.com\n"$COLOR_GREEN
 
 # backing up original updater-script...
 
@@ -93,10 +93,10 @@ else
 	sed -i "s;ui_print-devmsg2;ui_print;" $PROJECT_ROOT/META-INF/com/google/android/updater-script;
 fi
 
-# check and create “.git” folder, if not present, (we sometimes need this folder)...
+# check and create “system” folder.
 
-if [ ! -d "$PROJECT_ROOT/.git/" ]; then
-	mkdir $PROJECT_ROOT/.git/
+if [ ! -d "$PROJECT_ROOT/system/" ]; then
+	mkdir $PROJECT_ROOT/system/
 fi
 
 # modifying updater script...
@@ -105,11 +105,11 @@ fi
 
 if [ "y" == "$APP" ]; then
 	sed -i "s;# set_perm_sysapp;set_perm;" $PROJECT_ROOT/META-INF/com/google/android/updater-script;
-else
-	if [ -z "$(ls -A system/app/ --ignore=placeholder)" ]; then
-		# hiding “app” folder since it is empty
-		mv $PROJECT_ROOT/system/app/ $PROJECT_ROOT/.git/
+	if [ ! -d "$PROJECT_ROOT/system/app/" ]; then
+		mkdir $PROJECT_ROOT/system/app/
 	fi
+	echo -e $COLOR_GREEN"\n copying app(s) to 'system/app/' directory... \n"$COLOR_GREEN
+	cp $PROJECT_ROOT/working/app/* $PROJECT_ROOT/system/app/
 fi
 
 if [ -z "$APP1" ]; then
@@ -118,6 +118,13 @@ else
 	sed -i "s;set_perm_app1;set_perm;" $PROJECT_ROOT/META-INF/com/google/android/updater-script;
 	sed -i "s;main-app1;/system/app/${APP1};" $PROJECT_ROOT/META-INF/com/google/android/updater-script;
 	sed -i "s;main-apk1;/system/app/${APP1}/*;" $PROJECT_ROOT/META-INF/com/google/android/updater-script;
+	if [ -d $PROJECT_ROOT/working/app/$APP1 ]; then
+		if [ ! -d "$PROJECT_ROOT/system/app/" ]; then
+			mkdir $PROJECT_ROOT/system/app/
+		fi
+		echo -e $COLOR_GREEN"\n copying '$APP1' to 'system/app/' directory... \n"$COLOR_GREEN
+		cp -r $PROJECT_ROOT/working/app/$APP1/ $PROJECT_ROOT/system/app/
+	fi
 fi
 
 if [ -z "$APP2" ]; then
@@ -126,6 +133,13 @@ else
 	sed -i "s;set_perm_app2;set_perm;" $PROJECT_ROOT/META-INF/com/google/android/updater-script;
 	sed -i "s;main-app2;/system/app/${APP2};" $PROJECT_ROOT/META-INF/com/google/android/updater-script;
 	sed -i "s;main-apk2;/system/app/${APP2}/*;" $PROJECT_ROOT/META-INF/com/google/android/updater-script;
+	if [ -d $PROJECT_ROOT/working/app/$APP2 ]; then
+		if [ ! -d "$PROJECT_ROOT/system/app/" ]; then
+			mkdir $PROJECT_ROOT/system/app/
+		fi
+		echo -e $COLOR_GREEN"\n copying '$APP2' to 'system/app/' directory... \n"$COLOR_GREEN
+		cp -r $PROJECT_ROOT/working/app/$APP2 $PROJECT_ROOT/system/app/
+	fi
 fi
 
 if [ -z "$APP3" ]; then
@@ -134,6 +148,13 @@ else
 	sed -i "s;set_perm_app3;set_perm;" $PROJECT_ROOT/META-INF/com/google/android/updater-script;
 	sed -i "s;main-app3;/system/app/${APP3};" $PROJECT_ROOT/META-INF/com/google/android/updater-script;
 	sed -i "s;main-apk3;/system/app/${APP3}/*;" $PROJECT_ROOT/META-INF/com/google/android/updater-script;
+	if [ -d $PROJECT_ROOT/working/app/$APP3 ]; then
+		if [ ! -d "$PROJECT_ROOT/system/app/" ]; then
+			mkdir $PROJECT_ROOT/system/app/
+		fi
+		echo -e $COLOR_GREEN"\n copying '$APP3' to 'system/app/' directory... \n"$COLOR_GREEN
+		cp -r $PROJECT_ROOT/working/app/$APP3 $PROJECT_ROOT/system/app/
+	fi
 fi
 
 if [ -z "$APP4" ]; then
@@ -142,6 +163,13 @@ else
 	sed -i "s;set_perm_app4;set_perm;" $PROJECT_ROOT/META-INF/com/google/android/updater-script;
 	sed -i "s;main-app4;/system/app/${APP4};" $PROJECT_ROOT/META-INF/com/google/android/updater-script;
 	sed -i "s;main-apk4;/system/app/${APP4}/*;" $PROJECT_ROOT/META-INF/com/google/android/updater-script;
+	if [ -d $PROJECT_ROOT/working/app/$APP4 ]; then
+		if [ ! -d "$PROJECT_ROOT/system/app/" ]; then
+			mkdir $PROJECT_ROOT/system/app/
+		fi
+		echo -e $COLOR_GREEN"\n copying '$APP4' to 'system/app/' directory... \n"$COLOR_GREEN
+		cp -r $PROJECT_ROOT/working/app/$APP4 $PROJECT_ROOT/system/app/
+	fi
 fi
 
 if [ -z "$APP5" ]; then
@@ -150,17 +178,24 @@ else
 	sed -i "s;set_perm_app5;set_perm;" $PROJECT_ROOT/META-INF/com/google/android/updater-script;
 	sed -i "s;main-app5;/system/app/${APP5};" $PROJECT_ROOT/META-INF/com/google/android/updater-script;
 	sed -i "s;main-apk5;/system/app/${APP5}/*;" $PROJECT_ROOT/META-INF/com/google/android/updater-script;
+	if [ -d $PROJECT_ROOT/working/app/$APP5 ]; then
+		if [ ! -d "$PROJECT_ROOT/system/app/" ]; then
+			mkdir $PROJECT_ROOT/system/app/
+		fi
+		echo -e $COLOR_GREEN"\n copying '$APP5' to 'system/app/' directory... \n"$COLOR_GREEN
+		cp -r $PROJECT_ROOT/working/app/$APP5 $PROJECT_ROOT/system/app/
+	fi
 fi
 
 # priv-app(s)
 
 if [ "y" == "$PRIV_APP" ]; then
 	sed -i "s;# set_perm_privapp;set_perm;" $PROJECT_ROOT/META-INF/com/google/android/updater-script;
-else
-	if [ -z "$(ls -A system/priv-app/ --ignore=placeholder)" ]; then
-		# hiding “priv-app” folder since it is empty
-		mv $PROJECT_ROOT/system/priv-app/ $PROJECT_ROOT/.git/
+	if [ ! -d "$PROJECT_ROOT/system/priv-app/" ]; then
+		mkdir $PROJECT_ROOT/system/priv-app/
 	fi
+	echo -e $COLOR_GREEN"\n copying apps to 'system/priv-app/' directory... \n"$COLOR_GREEN
+	cp $PROJECT_ROOT/working/priv-app/* $PROJECT_ROOT/system/priv-app/
 fi
 
 if [ -z "$PRIV_APP1" ]; then
@@ -169,6 +204,13 @@ else
 	sed -i "s;set_perm_priv1;set_perm;" $PROJECT_ROOT/META-INF/com/google/android/updater-script;
 	sed -i "s;priv-app1;/system/priv-app/${PRIV_APP1};" $PROJECT_ROOT/META-INF/com/google/android/updater-script;
 	sed -i "s;priv-apk1;/system/priv-app/${PRIV_APP1}/*;" $PROJECT_ROOT/META-INF/com/google/android/updater-script;
+	if [ -d $PROJECT_ROOT/working/priv-app/$PRIV_APP1 ]; then
+		if [ ! -d "$PROJECT_ROOT/system/priv-app/" ]; then
+			mkdir $PROJECT_ROOT/system/priv-app/
+		fi
+		echo -e $COLOR_GREEN"\n copying '$PRIV_APP1' to 'system/priv-app/' directory... \n"$COLOR_GREEN
+		cp -r $PROJECT_ROOT/working/priv-app/$PRIV_APP1 $PROJECT_ROOT/system/priv-app/
+	fi
 fi
 
 if [ -z "$PRIV_APP2" ]; then
@@ -177,6 +219,13 @@ else
 	sed -i "s;set_perm_priv2;set_perm;" $PROJECT_ROOT/META-INF/com/google/android/updater-script;
 	sed -i "s;priv-app2;/system/priv-app/${PRIV_APP2};" $PROJECT_ROOT/META-INF/com/google/android/updater-script;
 	sed -i "s;priv-apk2;/system/priv-app/${PRIV_APP2}/*;" $PROJECT_ROOT/META-INF/com/google/android/updater-script;
+	if [ -d $PROJECT_ROOT/working/priv-app/$PRIV_APP2 ]; then
+		if [ ! -d "$PROJECT_ROOT/system/priv-app/" ]; then
+			mkdir $PROJECT_ROOT/system/priv-app/
+		fi
+		echo -e $COLOR_GREEN"\n copying '$PRIV_APP2' to 'system/priv-app/' directory... \n"$COLOR_GREEN
+		cp -r $PROJECT_ROOT/working/priv-app/$PRIV_APP2 $PROJECT_ROOT/system/priv-app/
+	fi
 fi
 
 if [ -z "$PRIV_APP3" ]; then
@@ -185,6 +234,13 @@ else
 	sed -i "s;set_perm_priv3;set_perm;" $PROJECT_ROOT/META-INF/com/google/android/updater-script;
 	sed -i "s;priv-app3;/system/priv-app/${PRIV_APP3};" $PROJECT_ROOT/META-INF/com/google/android/updater-script;
 	sed -i "s;priv-apk3;/system/priv-app/${PRIV_APP3}/*;" $PROJECT_ROOT/META-INF/com/google/android/updater-script;
+	if [ -d $PROJECT_ROOT/working/priv-app/$PRIV_APP3 ]; then
+		if [ ! -d "$PROJECT_ROOT/system/priv-app/" ]; then
+			mkdir $PROJECT_ROOT/system/priv-app/
+		fi
+		echo -e $COLOR_GREEN"\n copying '$PRIV_APP3' to 'system/priv-app/' directory... \n"$COLOR_GREEN
+		cp -r $PROJECT_ROOT/working/priv-app/$PRIV_APP3 $PROJECT_ROOT/system/priv-app/
+	fi
 fi
 
 if [ -z "$PRIV_APP4" ]; then
@@ -193,6 +249,13 @@ else
 	sed -i "s;set_perm_priv4;set_perm;" $PROJECT_ROOT/META-INF/com/google/android/updater-script;
 	sed -i "s;priv-app4;/system/priv-app/${PRIV_APP4};" $PROJECT_ROOT/META-INF/com/google/android/updater-script;
 	sed -i "s;priv-apk4;/system/priv-app/${PRIV_APP4}/*;" $PROJECT_ROOT/META-INF/com/google/android/updater-script;
+	if [ -d $PROJECT_ROOT/working/priv-app/$PRIV_APP4 ]; then
+		if [ ! -d "$PROJECT_ROOT/system/priv-app/" ]; then
+			mkdir $PROJECT_ROOT/system/priv-app/
+		fi
+		echo -e $COLOR_GREEN"\n copying '$PRIV_APP4' to 'system/priv-app/' directory... \n"$COLOR_GREEN
+		cp -r $PROJECT_ROOT/working/priv-app/$PRIV_APP4 $PROJECT_ROOT/system/priv-app/
+	fi
 fi
 
 if [ -z "$PRIV_APP5" ]; then
@@ -201,62 +264,89 @@ else
 	sed -i "s;set_perm_priv5;set_perm;" $PROJECT_ROOT/META-INF/com/google/android/updater-script;
 	sed -i "s;priv-app5;/system/priv-app/${PRIV_APP5};" $PROJECT_ROOT/META-INF/com/google/android/updater-script;
 	sed -i "s;priv-apk5;/system/priv-app/${PRIV_APP5}/*;" $PROJECT_ROOT/META-INF/com/google/android/updater-script;
+	if [ -d $PROJECT_ROOT/working/priv-app/$PRIV_APP5 ]; then
+		if [ ! -d "$PROJECT_ROOT/system/priv-app/" ]; then
+			mkdir $PROJECT_ROOT/system/priv-app/
+		fi
+		echo -e $COLOR_GREEN"\n copying '$PRIV_APP5' to 'system/priv-app/' directory... \n"$COLOR_GREEN
+		cp -r $PROJECT_ROOT/working/priv-app/$PRIV_APP5 $PROJECT_ROOT/system/priv-app/
+	fi
 fi
 
 # framework
 
 if [ "y" == "$FRAMEWORK" ]; then
 	sed -i "s;# set_perm_jar;set_perm;" $PROJECT_ROOT/META-INF/com/google/android/updater-script;
+	if [ ! -d "$PROJECT_ROOT/system/framework/" ]; then
+		mkdir $PROJECT_ROOT/system/framework/
+	fi
+	echo -e $COLOR_GREEN"\n copying framework (.jar) files to 'system/framework/' directory... \n"$COLOR_GREEN
+	cp $PROJECT_ROOT/working/framework/* $PROJECT_ROOT/system/framework/
 else
-	if [ -z "$(ls -A system/framework/ --ignore=placeholder)" ]; then
-		# hiding “framework” folder since it is empty
-		mv $PROJECT_ROOT/system/framework/ $PROJECT_ROOT/.git/
+	if [ -e $PROJECT_ROOT/working/framework/framework-res.apk ]; then
+		sed -i "s;# set_perm-fwr;set_perm;" $PROJECT_ROOT/META-INF/com/google/android/updater-script;
+		echo -e $COLOR_GREEN"\n copying 'framework-res.apk' files to 'system/framework/' directory... \n"$COLOR_GREEN
+		if [ ! -d "$PROJECT_ROOT/system/framework/" ]; then
+			mkdir $PROJECT_ROOT/system/framework/
+		fi
+		cp $PROJECT_ROOT/working/framework/framework-res.apk $PROJECT_ROOT/system/framework/
 	fi
 fi
 
-if [ -e system/framework/framework-res.apk ]; then
+if [ -e $PROJECT_ROOT/working/framework/framework-res.apk ]; then
 	sed -i "s;# set_perm-fwr;set_perm;" $PROJECT_ROOT/META-INF/com/google/android/updater-script;
+	echo -e $COLOR_GREEN"\n copying 'framework-res.apk' files to 'system/framework/' directory... \n"$COLOR_GREEN
+	if [ ! -d "$PROJECT_ROOT/system/framework/" ]; then
+		mkdir $PROJECT_ROOT/system/framework/
+	fi
+	cp $PROJECT_ROOT/working/framework/framework-res.apk $PROJECT_ROOT/system/framework/
 fi
 
-# lib & modules
+# lib
 if [ "y" == "$LIBRARY" ]; then
 	sed -i "s;# set_perm_lib;set_perm;" $PROJECT_ROOT/META-INF/com/google/android/updater-script;
-	if [ "y" == "$MODULES" ]; then
-		sed -i "s;# set_perm_modules;set_perm;" $PROJECT_ROOT/META-INF/com/google/android/updater-script;
-	else
-		if [ -z "$(ls -A system/lib/modules/ --ignore=placeholder)" ]; then
-			# hiding "modules" folder since it is empty
-			mv $PROJECT_ROOT/system/lib/modules $PROJECT_ROOT/.git/
-		fi
+	if [ ! -d "$PROJECT_ROOT/system/lib/" ]; then
+		mkdir $PROJECT_ROOT/system/lib/
 	fi
-else
-	if [ "y" == "$MODULES" ]; then
-		sed -i "s;# set_perm_modules;set_perm;" $PROJECT_ROOT/META-INF/com/google/android/updater-script;
-	else
-		if [ -z "$(ls -A system/lib/ --ignore=placeholder --ignore=modules)" ]; then
-			# hiding “lib” & "modules" directories since they are empty
-			mv $PROJECT_ROOT/system/lib/ $PROJECT_ROOT/.git/
-		fi
-	fi
+	echo -e $COLOR_GREEN"\n copying library (.so) files to 'system/lib/' directory... \n"$COLOR_GREEN
+	cp $PROJECT_ROOT/working/lib/* $PROJECT_ROOT/system/lib/
 fi
 
-# bootanimation
+# modules
 
-if [ -e system/media/bootanimation.zip ]; then
+if [ "y" == "$MODULES" ]; then
+	sed -i "s;# set_perm_modules;set_perm;" $PROJECT_ROOT/META-INF/com/google/android/updater-script;
+	if [ ! -d "$PROJECT_ROOT/system/lib/modules/" ]; then
+		mkdir $PROJECT_ROOT/system/lib/modules/
+	fi
+	echo -e $COLOR_GREEN"\n copying modules (.ko) to 'system/lib/modules/' directory... \n"$COLOR_GREEN
+	cp $PROJECT_ROOT/working/modules/* $PROJECT_ROOT/system/lib/modules/
+fi
+
+# boot-animation
+
+if [ -e $PROJECT_ROOT/working/bootanimation.zip ]; then
 	sed -i "s;# set_perm-bootanimation;set_perm;" $PROJECT_ROOT/META-INF/com/google/android/updater-script;
-else
-	# hiding “media” folder since it is empty
-	mv $PROJECT_ROOT/system/media/ $PROJECT_ROOT/.git/
+	if [ ! -d "$PROJECT_ROOT/system/media/" ]; then
+		mkdir $PROJECT_ROOT/system/media/
+	fi
+	echo -e $COLOR_GREEN"\n copying 'bootanimation.zip' to 'system/media/' directory... \n"$COLOR_GREEN
+	if [ ! -d "$PROJECT_ROOT/system/media/" ]; then
+		mkdir $PROJECT_ROOT/system/media/
+	fi
+	cp $PROJECT_ROOT/working/bootanimation.zip $PROJECT_ROOT/system/media/
 fi
 
 # boot.img
 
-if [ -e boot.img ]; then
+if [ -e $PROJECT_ROOT/working/boot.img ]; then
 	if [ -z "$BOOT_PARTITION" ]; then
-		mv $PROJECT_ROOT/boot.img $PROJECT_ROOT/boot.sh
+		mv $PROJECT_ROOT/working/boot.img $PROJECT_ROOT/boot.sh
 		echo -e $COLOR_GREEN"\n Error found. Please check line# 30\n"$COLOR_NEUTRAL
-		echo -e $COLOR_GREEN"\n 'boot.img' is excluded from the $OUTPUT_FILE \n"$COLOR_NEUTRAL
+		echo -e $COLOR_GREEN"\n 'boot.img' is excluded from the $OUTPUT_FILE \n"$COLOR_GREEN
 	else
+		echo -e $COLOR_GREEN"\n copying 'boot.img' to root directory... \n"$COLOR_GREEN
+		cp $PROJECT_ROOT/working/boot.img $PROJECT_ROOT/
 		sed -i "s;boot-partition;$BOOT_PARTITION;" $PROJECT_ROOT/META-INF/com/google/android/updater-script;
 		sed -i "s;# ui_print-boot;ui_print;" $PROJECT_ROOT/META-INF/com/google/android/updater-script;
 		sed -i "s;# package_extract_file-boot;package_extract_file;" $PROJECT_ROOT/META-INF/com/google/android/updater-script;
@@ -279,50 +369,42 @@ else
 	sed -i "s;ui_print-devmsg2;ui_print;" $PROJECT_ROOT/META-INF/com/google/android/updater-script;
 fi
 
-# hiding the remaining unused folder(s), if any
-
-if [ -z "$(ls -A $PROJECT_ROOT/system/)" ]; then
-	rm -r $PROJECT_ROOT/system/
-fi
-
 # generating recovery flashable zip file
 
-zip -r9 --exclude=*.sh* --exclude=*.git* --exclude=*.md* --exclude=*placeholder* $OUTPUT_FILE *
+if [ ! -d "$PROJECT_ROOT/output/" ]; then
+	mkdir $PROJECT_ROOT/output/
+fi
 
-# restoring original updater-script...
+if [ -z "$(ls -A system/)" ]; then
+	if [ -e $PROJECT_ROOT/boot.img ]; then
+		zip -r9 --exclude=*placeholder* $PROJECT_ROOT/output/$OUTPUT_FILE META-INF/* boot.img
+	else
+		echo -e $COLOR_RED"\n nothing done… ‘working’ directory is empty... \n"$COLOR_RED
+	fi
+else
+	if [ -e $PROJECT_ROOT/boot.img ]; then
+		zip -r9 --exclude=*placeholder* $PROJECT_ROOT/output/$OUTPUT_FILE META-INF/* system/* boot.img
+	else
+		zip -r9 --exclude=*placeholder* $PROJECT_ROOT/output/$OUTPUT_FILE META-INF/* system/*
+	fi	
+fi
 
-if [ -z "$BOOT_PARTITION" ]; then
-		mv $PROJECT_ROOT/boot.sh $PROJECT_ROOT/boot.img
+# restoring backup(s)...
+
+if [ -e $PROJECT_ROOT/boot.sh ]; then
+		mv $PROJECT_ROOT/boot.sh $PROJECT_ROOT/working/boot.img
 fi
 
 mv $PROJECT_ROOT/backup.sh $PROJECT_ROOT/META-INF/com/google/android/updater-script
 
-if [ ! -d "$PROJECT_ROOT/system" ]; then
-	mkdir $PROJECT_ROOT/system/
+# cleaning
+
+if [ -e $PROJECT_ROOT/boot.img ]; then
+	rm $PROJECT_ROOT/boot.img
 fi
 
-if [ -e $PROJECT_ROOT/.git/media/ ]; then
-	mv $PROJECT_ROOT/.git/media/ $PROJECT_ROOT/system/
+if [ -e $PROJECT_ROOT/system/ ]; then
+	rm -r $PROJECT_ROOT/system/
 fi
 
-if [ -e .git/lib/ ]; then
-	mv $PROJECT_ROOT/.git/lib/ $PROJECT_ROOT/system/
-fi
-
-if [ -e .git/modules/ ]; then
-	mv $PROJECT_ROOT/.git/modules $PROJECT_ROOT/system/lib/
-fi
-
-if [ -e .git/framework/ ]; then
-	mv $PROJECT_ROOT/.git/framework/ $PROJECT_ROOT/system/
-fi
-
-if [ -e .git/app/ ]; then
-	mv $PROJECT_ROOT/.git/app/ $PROJECT_ROOT/system/
-fi
-
-if [ -e .git/priv-app/ ]; then
-	mv $PROJECT_ROOT/.git/priv-app/ $PROJECT_ROOT/system/
-fi
-
-echo -e $COLOR_GREEN"\n everything done... $OUTPUT_FILE is generated in the root folder...\n"$COLOR_NEUTRAL
+# THE END
