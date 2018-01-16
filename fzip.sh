@@ -295,31 +295,32 @@ fi
 
 # framework
 
-if [ "y" == "$FRAMEWORK" ]; then
-	sed -i "s;# set_perm_jar;set_perm;" $PROJECT_ROOT/META-INF/com/google/android/updater-script;
-	if [ ! -d "$PROJECT_ROOT/system/framework/" ]; then
-		mkdir $PROJECT_ROOT/system/framework/
-	fi
-	echo -e $COLOR_GREEN"\n copying framework (.jar) files to 'system/framework/' directory... \n"$COLOR_GREEN
-	cp $PROJECT_ROOT/working/framework/* $PROJECT_ROOT/system/framework/
-else
-	if [ -e $PROJECT_ROOT/working/framework/framework-res.apk ]; then
+if [ -e $PROJECT_ROOT/working/framework/framework-res.apk ]; then
+	if [ "y" == "$FRAMEWORK" ]; then
 		sed -i "s;# set_perm-fwr;set_perm;" $PROJECT_ROOT/META-INF/com/google/android/updater-script;
-		echo -e $COLOR_GREEN"\n copying 'framework-res.apk' files to 'system/framework/' directory... \n"$COLOR_GREEN
+		sed -i "s;# set_perm_jar;set_perm;" $PROJECT_ROOT/META-INF/com/google/android/updater-script;
 		if [ ! -d "$PROJECT_ROOT/system/framework/" ]; then
 			mkdir $PROJECT_ROOT/system/framework/
 		fi
-		cp $PROJECT_ROOT/working/framework/framework-res.apk $PROJECT_ROOT/system/framework/
+		echo -e $COLOR_GREEN"\n copying 'framework-res.apk' & other framework (.jar) files into 'system/framework/' directory... \n"$COLOR_GREEN
+		cp $PROJECT_ROOT/working/framework/* $PROJECT_ROOT/system/framework/
+	else
+		sed -i "s;# set_perm-fwr;set_perm;" $PROJECT_ROOT/META-INF/com/google/android/updater-script;
+		if [ ! -d "$PROJECT_ROOT/system/framework/" ]; then
+			mkdir $PROJECT_ROOT/system/framework/
+		fi
+			echo -e $COLOR_GREEN"\n copying 'framework-res.apk' to 'system/framework/' directory... \n"$COLOR_GREEN
+			cp $PROJECT_ROOT/working/framework/framework-res.apk $PROJECT_ROOT/system/framework/
 	fi
-fi
-
-if [ -e $PROJECT_ROOT/working/framework/framework-res.apk ]; then
-	sed -i "s;# set_perm-fwr;set_perm;" $PROJECT_ROOT/META-INF/com/google/android/updater-script;
-	echo -e $COLOR_GREEN"\n copying 'framework-res.apk' files to 'system/framework/' directory... \n"$COLOR_GREEN
-	if [ ! -d "$PROJECT_ROOT/system/framework/" ]; then
-		mkdir $PROJECT_ROOT/system/framework/
+else
+	if [ "y" == "$FRAMEWORK" ]; then
+		sed -i "s;# set_perm_jar;set_perm;" $PROJECT_ROOT/META-INF/com/google/android/updater-script;
+		echo -e $COLOR_GREEN"\n copying framework (.jar) files to 'system/framework/' directory... \n"$COLOR_GREEN
+		if [ ! -d "$PROJECT_ROOT/system/framework/" ]; then
+			mkdir $PROJECT_ROOT/system/framework/
+		fi
+		cp $PROJECT_ROOT/working/framework/* $PROJECT_ROOT/system/framework/
 	fi
-	cp $PROJECT_ROOT/working/framework/framework-res.apk $PROJECT_ROOT/system/framework/
 fi
 
 # lib
