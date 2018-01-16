@@ -124,6 +124,8 @@ else
 		fi
 		echo -e $COLOR_GREEN"\n copying '$APP1' to 'system/app/' directory... \n"$COLOR_GREEN
 		cp -r $PROJECT_ROOT/working/app/$APP1/ $PROJECT_ROOT/system/app/
+	else
+		echo -e $COLOR_RED"\n Warning! '$APP1', which is designated as ‘APP1’ does not exist... \n"$COLOR_RED
 	fi
 fi
 
@@ -139,6 +141,8 @@ else
 		fi
 		echo -e $COLOR_GREEN"\n copying '$APP2' to 'system/app/' directory... \n"$COLOR_GREEN
 		cp -r $PROJECT_ROOT/working/app/$APP2 $PROJECT_ROOT/system/app/
+	else
+		echo -e $COLOR_RED"\n Warning! '$APP2', which is designated as ‘APP2’ does not exist... \n"$COLOR_RED
 	fi
 fi
 
@@ -154,6 +158,8 @@ else
 		fi
 		echo -e $COLOR_GREEN"\n copying '$APP3' to 'system/app/' directory... \n"$COLOR_GREEN
 		cp -r $PROJECT_ROOT/working/app/$APP3 $PROJECT_ROOT/system/app/
+	else
+		echo -e $COLOR_RED"\n Warning! '$APP3', which is designated as ‘APP3’ does not exist... \n"$COLOR_RED
 	fi
 fi
 
@@ -169,6 +175,8 @@ else
 		fi
 		echo -e $COLOR_GREEN"\n copying '$APP4' to 'system/app/' directory... \n"$COLOR_GREEN
 		cp -r $PROJECT_ROOT/working/app/$APP4 $PROJECT_ROOT/system/app/
+	else
+		echo -e $COLOR_RED"\n Warning! '$APP4', which is designated as ‘APP4’ does not exist... \n"$COLOR_RED
 	fi
 fi
 
@@ -184,6 +192,8 @@ else
 		fi
 		echo -e $COLOR_GREEN"\n copying '$APP5' to 'system/app/' directory... \n"$COLOR_GREEN
 		cp -r $PROJECT_ROOT/working/app/$APP5 $PROJECT_ROOT/system/app/
+	else
+		echo -e $COLOR_RED"\n Warning! '$APP5', which is designated as ‘APP5’ does not exist... \n"$COLOR_RED
 	fi
 fi
 
@@ -210,6 +220,8 @@ else
 		fi
 		echo -e $COLOR_GREEN"\n copying '$PRIV_APP1' to 'system/priv-app/' directory... \n"$COLOR_GREEN
 		cp -r $PROJECT_ROOT/working/priv-app/$PRIV_APP1 $PROJECT_ROOT/system/priv-app/
+	else
+		echo -e $COLOR_RED"\n Warning! '$PRIV_APP1', which is designated as ‘PRIV_APP1’ does not exist... \n"$COLOR_RED
 	fi
 fi
 
@@ -225,6 +237,8 @@ else
 		fi
 		echo -e $COLOR_GREEN"\n copying '$PRIV_APP2' to 'system/priv-app/' directory... \n"$COLOR_GREEN
 		cp -r $PROJECT_ROOT/working/priv-app/$PRIV_APP2 $PROJECT_ROOT/system/priv-app/
+	else
+		echo -e $COLOR_RED"\n Warning! '$PRIV_APP2', which is designated as ‘PRIV_APP2’ does not exist... \n"$COLOR_RED
 	fi
 fi
 
@@ -240,6 +254,8 @@ else
 		fi
 		echo -e $COLOR_GREEN"\n copying '$PRIV_APP3' to 'system/priv-app/' directory... \n"$COLOR_GREEN
 		cp -r $PROJECT_ROOT/working/priv-app/$PRIV_APP3 $PROJECT_ROOT/system/priv-app/
+	else
+		echo -e $COLOR_RED"\n Warning! '$PRIV_APP3', which is designated as ‘PRIV_APP3’ does not exist... \n"$COLOR_RED
 	fi
 fi
 
@@ -255,6 +271,8 @@ else
 		fi
 		echo -e $COLOR_GREEN"\n copying '$PRIV_APP4' to 'system/priv-app/' directory... \n"$COLOR_GREEN
 		cp -r $PROJECT_ROOT/working/priv-app/$PRIV_APP4 $PROJECT_ROOT/system/priv-app/
+	else
+		echo -e $COLOR_RED"\n Warning! '$PRIV_APP4', which is designated as ‘PRIV_APP4’ does not exist... \n"$COLOR_RED
 	fi
 fi
 
@@ -270,6 +288,8 @@ else
 		fi
 		echo -e $COLOR_GREEN"\n copying '$PRIV_APP5' to 'system/priv-app/' directory... \n"$COLOR_GREEN
 		cp -r $PROJECT_ROOT/working/priv-app/$PRIV_APP5 $PROJECT_ROOT/system/priv-app/
+	else
+		echo -e $COLOR_RED"\n Warning! '$PRIV_APP5', which is designated as ‘PRIV_APP5’ does not exist... \n"$COLOR_RED
 	fi
 fi
 
