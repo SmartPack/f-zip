@@ -5,7 +5,7 @@
 # 
 # Author: sunilpaulmathew <sunil.kde@gmail.com>
 #
-# Version 2.0.0
+# Version 2.1.0
 #
 
 # This script is licensed under the terms of the GNU General Public License version 2, as published by the 
