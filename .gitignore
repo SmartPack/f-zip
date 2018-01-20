@@ -1,4 +1,5 @@
 /output/
+/working/
 *.apk
 *.img
 *.zip

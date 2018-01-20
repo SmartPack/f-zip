@@ -323,6 +323,14 @@ else
 	fi
 fi
 
+# build.prop
+
+if [ -e $PROJECT_ROOT/working/build.prop ]; then
+	sed -i "s;# set_perm-buildprop;set_perm;" $PROJECT_ROOT/META-INF/com/google/android/updater-script;
+	echo -e $COLOR_GREEN"\n copying 'build.prop' into 'system/' directory... \n"$COLOR_GREEN
+	cp $PROJECT_ROOT/working/build.prop $PROJECT_ROOT/system/
+fi
+
 # lib
 if [ "y" == "$LIBRARY" ]; then
 	sed -i "s;# set_perm_lib;set_perm;" $PROJECT_ROOT/META-INF/com/google/android/updater-script;
