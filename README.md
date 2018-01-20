@@ -20,9 +20,10 @@ It will work on any Linux and Linux based operating systems including android. T
 ### 6. copy framework (typically “.jar”) file(s), if any, into “/working/framework/”.
 ### 7. copy "framework-res.apk", if any, into “/working/framework/”.
 ### 8. copy "bootanimation.zip" (only for aosp ROMs) file, if any, into “working” folder.
-### 9. modify fzip.sh accordingly (please see instructions below).
-### 10. open terminal and cd to the root folder of f-zip.
-### 11. run ". fzip.sh" (in Linux) or “sh fzip.sh” (in android).
-### 12. The recovery flashable zip file will be generated in the "output" folder.
+### 9. copy "build.prop", if any, into “working” folder.
+### 10. modify fzip.sh accordingly (please see instructions below).
+### 11. open terminal and cd to the root folder of f-zip.
+### 12. run ". fzip.sh" (in Linux) or “sh fzip.sh” (in android).
+### 13. The recovery flashable zip file will be generated in the "output" folder.
 
 ## [How-to-modify shell script?](https://github.com/SmartPack/f-zip/blob/master/How-to-modify.md)
