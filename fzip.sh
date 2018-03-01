@@ -76,12 +76,31 @@ echo -e $COLOR_GREEN"\n (c) sunilpaulmathew@xda-developers.com\n"$COLOR_GREEN
 
 cp $PROJECT_ROOT/META-INF/com/google/android/updater-script $PROJECT_ROOT/backup.sh
 
-DISPLAY_NAME="Flashing $PROJECT_NAME v. $PROJECT_VERSION"
-
-OUTPUT_FILE="$PROJECT_NAME-v.$PROJECT_VERSION-$(date +"%Y%m%d").zip"
+if [ -z "$PROJECT_NAME" ]; then
+	if [ -z "$PROJECT_VERSION" ]; then
+		DISPLAY_NAME="Flashing F-zip project"
+		OUTPUT_FILE="F-zip_Project-$(date +"%Y%m%d").zip"
+	else
+		DISPLAY_NAME="Flashing F-zip project v. $PROJECT_VERSION"
+		OUTPUT_FILE="F-zip_Project-v.$PROJECT_VERSION-$(date +"%Y%m%d").zip"
+	fi
+else
+	if [ -z "$PROJECT_VERSION" ]; then
+		DISPLAY_NAME="Flashing $PROJECT_NAME"
+		OUTPUT_FILE="$PROJECT_NAME-$(date +"%Y%m%d").zip"
+	else
+		DISPLAY_NAME="Flashing $PROJECT_NAME v. $PROJECT_VERSION"
+		OUTPUT_FILE="$PROJECT_NAME-v.$PROJECT_VERSION-$(date +"%Y%m%d").zip"
+	fi
+fi
 
 sed -i "s;###Flashing###;${DISPLAY_NAME};" $PROJECT_ROOT/META-INF/com/google/android/updater-script;
-sed -i "s;###copyright###;(c) ${COPYRIGHT};" $PROJECT_ROOT/META-INF/com/google/android/updater-script;
+
+if [ -z "$COPYRIGHT" ]; then
+	sed -i "s;###copyright###;(c) F-zip;" $PROJECT_ROOT/META-INF/com/google/android/updater-script;
+else
+	sed -i "s;###copyright###;(c) ${COPYRIGHT};" $PROJECT_ROOT/META-INF/com/google/android/updater-script;
+fi
 
 # dev msg
 
