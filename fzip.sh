@@ -423,6 +423,22 @@ if [ ! -d "$PROJECT_ROOT/output/" ]; then
 	mkdir $PROJECT_ROOT/output/
 fi
 
+if [ -e $PROJECT_ROOT/output/$OUTPUT_FILE ]; then
+	# Managing backups
+	if [ -e $PROJECT_ROOT/output/bk2-$OUTPUT_FILE ]; then
+		rm $PROJECT_ROOT/output/bk2-$OUTPUT_FILE
+	fi
+	if [ -e $PROJECT_ROOT/output/bk1-$OUTPUT_FILE ]; then
+		mv $PROJECT_ROOT/output/bk1-$OUTPUT_FILE $PROJECT_ROOT/output/bk2-$OUTPUT_FILE
+	fi
+	if [ -e $PROJECT_ROOT/output/bk-$OUTPUT_FILE ]; then
+		mv $PROJECT_ROOT/output/bk-$OUTPUT_FILE $PROJECT_ROOT/output/bk1-$OUTPUT_FILE
+	fi
+	if [ -e $PROJECT_ROOT/output/$OUTPUT_FILE ]; then
+		mv $PROJECT_ROOT/output/$OUTPUT_FILE $PROJECT_ROOT/output/bk-$OUTPUT_FILE
+	fi
+fi
+
 if [ -z "$(ls -A system/)" ]; then
 	if [ -e $PROJECT_ROOT/boot.img ]; then
 		zip -r9 --exclude=*placeholder* $PROJECT_ROOT/output/$OUTPUT_FILE META-INF/* boot.img
