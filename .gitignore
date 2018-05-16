@@ -1,6 +1,7 @@
 /output/
-/working/
 *.apk
 *.img
 *.zip
 *.jar
+*.so
+*.ko

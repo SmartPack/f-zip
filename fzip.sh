@@ -352,23 +352,65 @@ fi
 
 # lib
 if [ "y" == "$LIBRARY" ]; then
-	sed -i "s;# set_perm_lib;set_perm;" $PROJECT_ROOT/META-INF/com/google/android/updater-script;
-	if [ ! -d "$PROJECT_ROOT/system/lib/" ]; then
-		mkdir $PROJECT_ROOT/system/lib/
+	if [ "$(ls -A $PROJECT_ROOT/working/lib/ --ignore=placeholder)" ]; then
+		# Android Nougat and below...
+		sed -i "s;# set_perm_lib;set_perm(1000, 1000, 0644, "/system/lib/./**/*.so");" $PROJECT_ROOT/META-INF/com/google/android/updater-script;
+		# check and create “lib" folder.
+		if [ ! -d "$PROJECT_ROOT/system/lib/" ]; then
+			mkdir $PROJECT_ROOT/system/lib/
+		fi
+		echo -e $COLOR_GREEN"\n copying library (.so) files to 'system/lib/' directory... \n"$COLOR_GREEN
+		cp $PROJECT_ROOT/working/lib/* $PROJECT_ROOT/system/lib/
+	elif [ "$(ls -A $PROJECT_ROOT/working/oreo_lib/ --ignore=placeholder)" ]; then
+		# Android Oreo and above...
+		sed -i "s;# set_perm_lib;set_perm(1000, 1000, 0644, "/system/vendor/lib/./**/*.so");" $PROJECT_ROOT/META-INF/com/google/android/updater-script;
+		# Check and create necessary folders
+		if [ ! -d "$PROJECT_ROOT/system/vendor/" ]; then
+			mkdir $PROJECT_ROOT/system/vendor/
+		fi
+		if [ ! -d "$PROJECT_ROOT/system/vendor/lib/" ]; then
+			mkdir $PROJECT_ROOT/system/vendor/lib/
+		fi
+		echo -e $COLOR_GREEN"\n copying library (.so) files to 'system/vendor/lib/' directory... \n"$COLOR_GREEN
+		cp $PROJECT_ROOT/working/oreo_lib/* $PROJECT_ROOT/system/vendor/lib/
+	else
+		echo -e $COLOR_RED"\n Error: No library (.so) files found ... \n"$COLOR_GREEN
 	fi
-	echo -e $COLOR_GREEN"\n copying library (.so) files to 'system/lib/' directory... \n"$COLOR_GREEN
-	cp $PROJECT_ROOT/working/lib/* $PROJECT_ROOT/system/lib/
 fi
 
 # modules
 
 if [ "y" == "$MODULES" ]; then
-	sed -i "s;# set_perm_modules;set_perm;" $PROJECT_ROOT/META-INF/com/google/android/updater-script;
-	if [ ! -d "$PROJECT_ROOT/system/lib/modules/" ]; then
-		mkdir $PROJECT_ROOT/system/lib/modules/
+	if [ "$(ls -A $PROJECT_ROOT/working/modules/ --ignore=placeholder)" ]; then
+		# Android Nougat and below...
+		sed -i "s;# set_perm_modules;set_perm(1000, 1000, 0644, "/system/lib/modules/./**/*.ko");" $PROJECT_ROOT/META-INF/com/google/android/updater-script;
+		# Check and create necessary folders
+		if [ ! -d "$PROJECT_ROOT/system/lib/" ]; then
+			mkdir $PROJECT_ROOT/system/lib/
+		fi
+		if [ ! -d "$PROJECT_ROOT/system/lib/modules/" ]; then
+			mkdir $PROJECT_ROOT/system/lib/modules/
+		fi
+		echo -e $COLOR_GREEN"\n copying modules (.ko) to 'system/lib/modules/' directory... \n"$COLOR_GREEN
+		cp $PROJECT_ROOT/working/modules/* $PROJECT_ROOT/system/lib/modules/
+	elif [ "$(ls -A $PROJECT_ROOT/working/oreo_modules/ --ignore=placeholder)" ]; then
+		# Android Oreo and above...
+		sed -i "s;# set_perm_modules;set_perm(1000, 1000, 0644, "/system/vendor/lib/modules/./**/*.ko");" $PROJECT_ROOT/META-INF/com/google/android/updater-script;
+		# Check and create necessary folders
+		if [ ! -d "$PROJECT_ROOT/system/vendor/" ]; then
+			mkdir $PROJECT_ROOT/system/vendor/
+		fi
+		if [ ! -d "$PROJECT_ROOT/system/vendor/lib/" ]; then
+			mkdir $PROJECT_ROOT/system/vendor/lib/
+		fi
+		if [ ! -d "$PROJECT_ROOT/system/vendor/lib/modules/" ]; then
+			mkdir $PROJECT_ROOT/system/vendor/lib/modules/
+		fi
+		echo -e $COLOR_GREEN"\n copying modules (.ko) to 'system/vendor/lib/modules/' directory... \n"$COLOR_GREEN
+		cp $PROJECT_ROOT/working/oreo_modules/* $PROJECT_ROOT/system/vendor/lib/modules/
+	else
+		echo -e $COLOR_RED"\n Error: No modules (.ko) found ... \n"$COLOR_GREEN
 	fi
-	echo -e $COLOR_GREEN"\n copying modules (.ko) to 'system/lib/modules/' directory... \n"$COLOR_GREEN
-	cp $PROJECT_ROOT/working/modules/* $PROJECT_ROOT/system/lib/modules/
 fi
 
 # boot-animation
