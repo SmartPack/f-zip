@@ -48,8 +48,10 @@ PRIV_APP5=""
 PRIV_APP=""		# Please enter y (APP="y") if you want to add an app(s) directly to "/system/priv-app/" (without a separate folder).
 
 LIBRARY=""		# Please enter y (LIBRARY="y") if you want to add ".so" file(s) to "/system/lib/"
+			# or "/system/vendor/lib/" for Android Oreo and above
 
-MODULES=""		# Please enter y (MODULES="y") if you want to add ".ko" file(s) to "/system/lib/modules/"
+MODULES=""		# Please enter y (MODULES="y") if you want to add ".ko" file(s) to "/system/lib/modules/" 
+			# or "/system/vendor/lib/modules/" for Android Oreo and above
 
 FRAMEWORK=""		# Please enter y (FRAMEWORK="y") if you want to add ".jar" file(s) to "/system/framework/"
 
@@ -84,14 +86,12 @@ if [ -z "$PROJECT_NAME" ]; then
 		DISPLAY_NAME="Flashing F-zip project v. $PROJECT_VERSION"
 		OUTPUT_FILE="F-zip_Project-v.$PROJECT_VERSION-$(date +"%Y%m%d").zip"
 	fi
+elif [ -z "$PROJECT_VERSION" ]; then
+	DISPLAY_NAME="Flashing $PROJECT_NAME"
+	OUTPUT_FILE="$PROJECT_NAME-$(date +"%Y%m%d").zip"
 else
-	if [ -z "$PROJECT_VERSION" ]; then
-		DISPLAY_NAME="Flashing $PROJECT_NAME"
-		OUTPUT_FILE="$PROJECT_NAME-$(date +"%Y%m%d").zip"
-	else
-		DISPLAY_NAME="Flashing $PROJECT_NAME v. $PROJECT_VERSION"
-		OUTPUT_FILE="$PROJECT_NAME-v.$PROJECT_VERSION-$(date +"%Y%m%d").zip"
-	fi
+	DISPLAY_NAME="Flashing $PROJECT_NAME v. $PROJECT_VERSION"
+	OUTPUT_FILE="$PROJECT_NAME-v.$PROJECT_VERSION-$(date +"%Y%m%d").zip"
 fi
 
 sed -i "s;###Flashing###;${DISPLAY_NAME};" $PROJECT_ROOT/META-INF/com/google/android/updater-script;
@@ -487,12 +487,10 @@ if [ -z "$(ls -A system/)" ]; then
 	else
 		echo -e $COLOR_RED"\n nothing done… ‘working’ directory is empty... \n"$COLOR_RED
 	fi
+elif [ -e $PROJECT_ROOT/boot.img ]; then
+	zip -r9 --exclude=*placeholder* $PROJECT_ROOT/output/$OUTPUT_FILE META-INF/* system/* boot.img
 else
-	if [ -e $PROJECT_ROOT/boot.img ]; then
-		zip -r9 --exclude=*placeholder* $PROJECT_ROOT/output/$OUTPUT_FILE META-INF/* system/* boot.img
-	else
-		zip -r9 --exclude=*placeholder* $PROJECT_ROOT/output/$OUTPUT_FILE META-INF/* system/*
-	fi	
+	zip -r9 --exclude=*placeholder* $PROJECT_ROOT/output/$OUTPUT_FILE META-INF/* system/*
 fi
 
 # restoring backup(s)...

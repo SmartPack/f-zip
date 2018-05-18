@@ -15,8 +15,8 @@ It will work on any Linux and Linux based operating systems including android. T
 ### 1. clone or download f-zip repo into your Linux PC or Android device.
 ### 2. copy "boot.img", if any, into the "working" folder. Caution: Don’t forget to modify “fzip.sh” (line# 30), if your device is anything other than Samsung Galaxy S5 (kltexxx).
 ### 3. copy the app folder(s) in to "/working/priv-app/" or/and "/working/app/". You may also copy the “.apk” file(s) directly to “/working/app/” or/and “/working/priv-app/” (without folder) if your app/ROM supports to do so.
-### 4. copy library (typically “.so”) file(s), if any, into “/working/lib/”.
-### 5. copy modules (typically “.ko”) file(s), if any, into “/working/modules/”.
+### 4. copy library (typically “.so”) file(s), if any, into “/working/lib/” (“/working/oreo_lib/” for Android Oreo and above).
+### 5. copy modules (typically “.ko”) file(s), if any, into “/working/modules/” (“/working/oreo_modules/” for Android Oreo and above).
 ### 6. copy framework (typically “.jar”) file(s), if any, into “/working/framework/”.
 ### 7. copy "framework-res.apk", if any, into “/working/framework/”.
 ### 8. copy "bootanimation.zip" (only for aosp ROMs) file, if any, into “working” folder.
