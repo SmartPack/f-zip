@@ -131,12 +131,9 @@ if [ "y" == "$APP" ]; then
 	cp $PROJECT_ROOT/working/app/* $PROJECT_ROOT/system/app/
 fi
 
-if [ -z "$APP1" ]; then
-	sed -i "s;set_perm_app1;# set_perm;" $PROJECT_ROOT/META-INF/com/google/android/updater-script;
-	sed -i "s;set_perm_apk1;# set_perm;" $PROJECT_ROOT/META-INF/com/google/android/updater-script;	
-else
-	sed -i "s;set_perm_app1;set_perm(1000, 1000, 0755, "/system/app/${APP1}");" $PROJECT_ROOT/META-INF/com/google/android/updater-script;
-	sed -i "s;set_perm_apk1;set_perm(1000, 1000, 0644, "/system/app/${APP1}/*");" $PROJECT_ROOT/META-INF/com/google/android/updater-script;
+if [ ! -z "$APP1" ]; then
+	sed -i "s;# set_perm_app1;set_perm(1000, 1000, 0755, "/system/app/${APP1}");" $PROJECT_ROOT/META-INF/com/google/android/updater-script;
+	sed -i "s;# set_perm_apk1;set_perm(1000, 1000, 0644, "/system/app/${APP1}/*");" $PROJECT_ROOT/META-INF/com/google/android/updater-script;
 	if [ -d $PROJECT_ROOT/working/app/$APP1 ]; then
 		if [ ! -d "$PROJECT_ROOT/system/app/" ]; then
 			mkdir $PROJECT_ROOT/system/app/
@@ -148,12 +145,9 @@ else
 	fi
 fi
 
-if [ -z "$APP2" ]; then
-	sed -i "s;set_perm_app2;# set_perm;" $PROJECT_ROOT/META-INF/com/google/android/updater-script;
-	sed -i "s;set_perm_apk2;# set_perm;" $PROJECT_ROOT/META-INF/com/google/android/updater-script;	
-else
-	sed -i "s;set_perm_app2;set_perm(1000, 1000, 0755, "/system/app/${APP2}");" $PROJECT_ROOT/META-INF/com/google/android/updater-script;
-	sed -i "s;set_perm_apk2;set_perm(1000, 1000, 0644, "/system/app/${APP2}/*");" $PROJECT_ROOT/META-INF/com/google/android/updater-script;
+if [ ! -z "$APP2" ]; then
+	sed -i "s;# set_perm_app2;set_perm(1000, 1000, 0755, "/system/app/${APP2}");" $PROJECT_ROOT/META-INF/com/google/android/updater-script;
+	sed -i "s;# set_perm_apk2;set_perm(1000, 1000, 0644, "/system/app/${APP2}/*");" $PROJECT_ROOT/META-INF/com/google/android/updater-script;
 	if [ -d $PROJECT_ROOT/working/app/$APP2 ]; then
 		if [ ! -d "$PROJECT_ROOT/system/app/" ]; then
 			mkdir $PROJECT_ROOT/system/app/
@@ -165,12 +159,9 @@ else
 	fi
 fi
 
-if [ -z "$APP3" ]; then
-	sed -i "s;set_perm_app3;# set_perm;" $PROJECT_ROOT/META-INF/com/google/android/updater-script;
-	sed -i "s;set_perm_apk3;# set_perm;" $PROJECT_ROOT/META-INF/com/google/android/updater-script;	
-else
-	sed -i "s;set_perm_app3;set_perm(1000, 1000, 0755, "/system/app/${APP3}");" $PROJECT_ROOT/META-INF/com/google/android/updater-script;
-	sed -i "s;set_perm_apk3;set_perm(1000, 1000, 0644, "/system/app/${APP3}/*");" $PROJECT_ROOT/META-INF/com/google/android/updater-script;
+if [ ! -z "$APP3" ]; then
+	sed -i "s;# set_perm_app3;set_perm(1000, 1000, 0755, "/system/app/${APP3}");" $PROJECT_ROOT/META-INF/com/google/android/updater-script;
+	sed -i "s;# set_perm_apk3;set_perm(1000, 1000, 0644, "/system/app/${APP3}/*");" $PROJECT_ROOT/META-INF/com/google/android/updater-script;
 	if [ -d $PROJECT_ROOT/working/app/$APP3 ]; then
 		if [ ! -d "$PROJECT_ROOT/system/app/" ]; then
 			mkdir $PROJECT_ROOT/system/app/
@@ -182,12 +173,9 @@ else
 	fi
 fi
 
-if [ -z "$APP4" ]; then
-	sed -i "s;set_perm_app4;# set_perm;" $PROJECT_ROOT/META-INF/com/google/android/updater-script;
-	sed -i "s;set_perm_apk4;# set_perm;" $PROJECT_ROOT/META-INF/com/google/android/updater-script;	
-else
-	sed -i "s;set_perm_app4;set_perm(1000, 1000, 0755, "/system/app/${APP4}");" $PROJECT_ROOT/META-INF/com/google/android/updater-script;
-	sed -i "s;set_perm_apk4;set_perm(1000, 1000, 0644, "/system/app/${APP4}/*");" $PROJECT_ROOT/META-INF/com/google/android/updater-script;
+if [ ! -z "$APP4" ]; then
+	sed -i "s;# set_perm_app4;set_perm(1000, 1000, 0755, "/system/app/${APP4}");" $PROJECT_ROOT/META-INF/com/google/android/updater-script;
+	sed -i "s;# set_perm_apk4;set_perm(1000, 1000, 0644, "/system/app/${APP4}/*");" $PROJECT_ROOT/META-INF/com/google/android/updater-script;
 	if [ -d $PROJECT_ROOT/working/app/$APP4 ]; then
 		if [ ! -d "$PROJECT_ROOT/system/app/" ]; then
 			mkdir $PROJECT_ROOT/system/app/
@@ -199,12 +187,9 @@ else
 	fi
 fi
 
-if [ -z "$APP5" ]; then
-	sed -i "s;set_perm_app5;# set_perm;" $PROJECT_ROOT/META-INF/com/google/android/updater-script;
-	sed -i "s;set_perm_apk5;# set_perm;" $PROJECT_ROOT/META-INF/com/google/android/updater-script;	
-else
-	sed -i "s;set_perm_app5;set_perm(1000, 1000, 0755, "/system/app/${APP5}");" $PROJECT_ROOT/META-INF/com/google/android/updater-script;
-	sed -i "s;set_perm_apk5;set_perm(1000, 1000, 0644, "/system/app/${APP5}/*");" $PROJECT_ROOT/META-INF/com/google/android/updater-script;
+if [ ! -z "$APP5" ]; then
+	sed -i "s;# set_perm_app5;set_perm(1000, 1000, 0755, "/system/app/${APP5}");" $PROJECT_ROOT/META-INF/com/google/android/updater-script;
+	sed -i "s;# set_perm_apk5;set_perm(1000, 1000, 0644, "/system/app/${APP5}/*");" $PROJECT_ROOT/META-INF/com/google/android/updater-script;
 	if [ -d $PROJECT_ROOT/working/app/$APP5 ]; then
 		if [ ! -d "$PROJECT_ROOT/system/app/" ]; then
 			mkdir $PROJECT_ROOT/system/app/
@@ -227,12 +212,9 @@ if [ "y" == "$PRIV_APP" ]; then
 	cp $PROJECT_ROOT/working/priv-app/* $PROJECT_ROOT/system/priv-app/
 fi
 
-if [ -z "$PRIV_APP1" ]; then
-	sed -i "s;set_perm_priv1;# set_perm;" $PROJECT_ROOT/META-INF/com/google/android/updater-script;	
-	sed -i "s;set_perm_privapk1;# set_perm;" $PROJECT_ROOT/META-INF/com/google/android/updater-script;	
-else
-	sed -i "s;set_perm_priv1;set_perm(1000, 1000, 0755, "/system/priv-app/${PRIV_APP1}");" $PROJECT_ROOT/META-INF/com/google/android/updater-script;
-	sed -i "s;set_perm_privapk1;set_perm(1000, 1000, 0644, "/system/priv-app/${PRIV_APP1}/*");" $PROJECT_ROOT/META-INF/com/google/android/updater-script;
+if [ ! -z "$PRIV_APP1" ]; then
+	sed -i "s;# set_perm_priv1;set_perm(1000, 1000, 0755, "/system/priv-app/${PRIV_APP1}");" $PROJECT_ROOT/META-INF/com/google/android/updater-script;
+	sed -i "s;# set_perm_privapk1;set_perm(1000, 1000, 0644, "/system/priv-app/${PRIV_APP1}/*");" $PROJECT_ROOT/META-INF/com/google/android/updater-script;
 	if [ -d $PROJECT_ROOT/working/priv-app/$PRIV_APP1 ]; then
 		if [ ! -d "$PROJECT_ROOT/system/priv-app/" ]; then
 			mkdir $PROJECT_ROOT/system/priv-app/
@@ -244,12 +226,9 @@ else
 	fi
 fi
 
-if [ -z "$PRIV_APP2" ]; then
-	sed -i "s;set_perm_priv2;# set_perm;" $PROJECT_ROOT/META-INF/com/google/android/updater-script;	
-	sed -i "s;set_perm_privapk2;# set_perm;" $PROJECT_ROOT/META-INF/com/google/android/updater-script;	
-else
-	sed -i "s;set_perm_priv2;set_perm(1000, 1000, 0755, "/system/priv-app/${PRIV_APP2}");" $PROJECT_ROOT/META-INF/com/google/android/updater-script;
-	sed -i "s;set_perm_privapk2;set_perm(1000, 1000, 0644, "/system/priv-app/${PRIV_APP2}/*");" $PROJECT_ROOT/META-INF/com/google/android/updater-script;
+if [ ! -z "$PRIV_APP2" ]; then
+	sed -i "s;# set_perm_priv2;set_perm(1000, 1000, 0755, "/system/priv-app/${PRIV_APP2}");" $PROJECT_ROOT/META-INF/com/google/android/updater-script;
+	sed -i "s;# set_perm_privapk2;set_perm(1000, 1000, 0644, "/system/priv-app/${PRIV_APP2}/*");" $PROJECT_ROOT/META-INF/com/google/android/updater-script;
 	if [ -d $PROJECT_ROOT/working/priv-app/$PRIV_APP2 ]; then
 		if [ ! -d "$PROJECT_ROOT/system/priv-app/" ]; then
 			mkdir $PROJECT_ROOT/system/priv-app/
@@ -261,12 +240,9 @@ else
 	fi
 fi
 
-if [ -z "$PRIV_APP3" ]; then
-	sed -i "s;set_perm_priv3;# set_perm;" $PROJECT_ROOT/META-INF/com/google/android/updater-script;	
-	sed -i "s;set_perm_privapk3;# set_perm;" $PROJECT_ROOT/META-INF/com/google/android/updater-script;	
-else
-	sed -i "s;set_perm_priv3;set_perm(1000, 1000, 0755, "/system/priv-app/${PRIV_APP3}");" $PROJECT_ROOT/META-INF/com/google/android/updater-script;
-	sed -i "s;set_perm_privapk3;set_perm(1000, 1000, 0644, "/system/priv-app/${PRIV_APP3}/*");" $PROJECT_ROOT/META-INF/com/google/android/updater-script;
+if [ ! -z "$PRIV_APP3" ]; then
+	sed -i "s;# set_perm_priv3;set_perm(1000, 1000, 0755, "/system/priv-app/${PRIV_APP3}");" $PROJECT_ROOT/META-INF/com/google/android/updater-script;
+	sed -i "s;# set_perm_privapk3;set_perm(1000, 1000, 0644, "/system/priv-app/${PRIV_APP3}/*");" $PROJECT_ROOT/META-INF/com/google/android/updater-script;
 	if [ -d $PROJECT_ROOT/working/priv-app/$PRIV_APP3 ]; then
 		if [ ! -d "$PROJECT_ROOT/system/priv-app/" ]; then
 			mkdir $PROJECT_ROOT/system/priv-app/
@@ -278,12 +254,9 @@ else
 	fi
 fi
 
-if [ -z "$PRIV_APP4" ]; then
-	sed -i "s;set_perm_priv4;# set_perm;" $PROJECT_ROOT/META-INF/com/google/android/updater-script;	
-	sed -i "s;set_perm_privapk4;# set_perm;" $PROJECT_ROOT/META-INF/com/google/android/updater-script;	
-else
-	sed -i "s;set_perm_priv4;set_perm(1000, 1000, 0755, "/system/priv-app/${PRIV_APP4}");" $PROJECT_ROOT/META-INF/com/google/android/updater-script;
-	sed -i "s;set_perm_privapk4;set_perm(1000, 1000, 0644, "/system/priv-app/${PRIV_APP4}/*");" $PROJECT_ROOT/META-INF/com/google/android/updater-script;
+if [ ! -z "$PRIV_APP4" ]; then
+	sed -i "s;# set_perm_priv4;set_perm(1000, 1000, 0755, "/system/priv-app/${PRIV_APP4}");" $PROJECT_ROOT/META-INF/com/google/android/updater-script;
+	sed -i "s;# set_perm_privapk4;set_perm(1000, 1000, 0644, "/system/priv-app/${PRIV_APP4}/*");" $PROJECT_ROOT/META-INF/com/google/android/updater-script;
 	if [ -d $PROJECT_ROOT/working/priv-app/$PRIV_APP4 ]; then
 		if [ ! -d "$PROJECT_ROOT/system/priv-app/" ]; then
 			mkdir $PROJECT_ROOT/system/priv-app/
@@ -295,12 +268,9 @@ else
 	fi
 fi
 
-if [ -z "$PRIV_APP5" ]; then
-	sed -i "s;set_perm_priv5;# set_perm;" $PROJECT_ROOT/META-INF/com/google/android/updater-script;	
-	sed -i "s;set_perm_privapk5;# set_perm;" $PROJECT_ROOT/META-INF/com/google/android/updater-script;	
-else
-	sed -i "s;set_perm_priv5;set_perm(1000, 1000, 0755, "/system/priv-app/${PRIV_APP5}");" $PROJECT_ROOT/META-INF/com/google/android/updater-script;
-	sed -i "s;set_perm_privapk5;set_perm(1000, 1000, 0644, "/system/priv-app/${PRIV_APP5}/*");" $PROJECT_ROOT/META-INF/com/google/android/updater-script;
+if [ ! -z "$PRIV_APP5" ]; then
+	sed -i "s;# set_perm_priv5;set_perm(1000, 1000, 0755, "/system/priv-app/${PRIV_APP5}");" $PROJECT_ROOT/META-INF/com/google/android/updater-script;
+	sed -i "s;# set_perm_privapk5;set_perm(1000, 1000, 0644, "/system/priv-app/${PRIV_APP5}/*");" $PROJECT_ROOT/META-INF/com/google/android/updater-script;
 	if [ -d $PROJECT_ROOT/working/priv-app/$PRIV_APP5 ]; then
 		if [ ! -d "$PROJECT_ROOT/system/priv-app/" ]; then
 			mkdir $PROJECT_ROOT/system/priv-app/
