@@ -123,7 +123,7 @@ fi
 # system-app(s)
 
 if [ "y" == "$APP" ]; then
-	sed -i "s;# set_perm_sysapp;set_perm;" $PROJECT_ROOT/META-INF/com/google/android/updater-script;
+	sed -i "s;# set_perm_sysapp;set_perm(1000, 1000, 0644, "/system/app/./**/*.apk");" $PROJECT_ROOT/META-INF/com/google/android/updater-script;
 	if [ ! -d "$PROJECT_ROOT/system/app/" ]; then
 		mkdir $PROJECT_ROOT/system/app/
 	fi
@@ -219,7 +219,7 @@ fi
 # priv-app(s)
 
 if [ "y" == "$PRIV_APP" ]; then
-	sed -i "s;# set_perm_privapp;set_perm;" $PROJECT_ROOT/META-INF/com/google/android/updater-script;
+	sed -i "s;# set_perm_privapp;set_perm(1000, 1000, 0644, "/system/priv-app/./**/*.apk");" $PROJECT_ROOT/META-INF/com/google/android/updater-script;
 	if [ ! -d "$PROJECT_ROOT/system/priv-app/" ]; then
 		mkdir $PROJECT_ROOT/system/priv-app/
 	fi
@@ -316,15 +316,15 @@ fi
 
 if [ -e $PROJECT_ROOT/working/framework/framework-res.apk ]; then
 	if [ "y" == "$FRAMEWORK" ]; then
-		sed -i "s;# set_perm-fwr;set_perm;" $PROJECT_ROOT/META-INF/com/google/android/updater-script;
-		sed -i "s;# set_perm_jar;set_perm;" $PROJECT_ROOT/META-INF/com/google/android/updater-script;
+		sed -i "s;# set_perm-fwr;set_perm(1000, 1000, 0644, "/system/framework/framework-res.apk");" $PROJECT_ROOT/META-INF/com/google/android/updater-script;
+		sed -i "s;# set_perm_jar;set_perm(1000, 1000, 0644, "/system/framework/./**/*.jar");" $PROJECT_ROOT/META-INF/com/google/android/updater-script;
 		if [ ! -d "$PROJECT_ROOT/system/framework/" ]; then
 			mkdir $PROJECT_ROOT/system/framework/
 		fi
 		echo -e $COLOR_GREEN"\n copying 'framework-res.apk' & other framework (.jar) files into 'system/framework/' directory... \n"$COLOR_GREEN
 		cp $PROJECT_ROOT/working/framework/* $PROJECT_ROOT/system/framework/
 	else
-		sed -i "s;# set_perm-fwr;set_perm;" $PROJECT_ROOT/META-INF/com/google/android/updater-script;
+		sed -i "s;# set_perm-fwr;set_perm(1000, 1000, 0644, "/system/framework/framework-res.apk");" $PROJECT_ROOT/META-INF/com/google/android/updater-script;
 		if [ ! -d "$PROJECT_ROOT/system/framework/" ]; then
 			mkdir $PROJECT_ROOT/system/framework/
 		fi
@@ -333,7 +333,7 @@ if [ -e $PROJECT_ROOT/working/framework/framework-res.apk ]; then
 	fi
 else
 	if [ "y" == "$FRAMEWORK" ]; then
-		sed -i "s;# set_perm_jar;set_perm;" $PROJECT_ROOT/META-INF/com/google/android/updater-script;
+		sed -i "s;# set_perm_jar;set_perm(1000, 1000, 0644, "/system/framework/./**/*.jar");" $PROJECT_ROOT/META-INF/com/google/android/updater-script;
 		echo -e $COLOR_GREEN"\n copying framework (.jar) files to 'system/framework/' directory... \n"$COLOR_GREEN
 		if [ ! -d "$PROJECT_ROOT/system/framework/" ]; then
 			mkdir $PROJECT_ROOT/system/framework/
@@ -345,7 +345,7 @@ fi
 # build.prop
 
 if [ -e $PROJECT_ROOT/working/build.prop ]; then
-	sed -i "s;# set_perm-buildprop;set_perm;" $PROJECT_ROOT/META-INF/com/google/android/updater-script;
+	sed -i "s;# set_perm-buildprop;set_perm(1000, 1000, 0644, "/system/build.prop");" $PROJECT_ROOT/META-INF/com/google/android/updater-script;
 	echo -e $COLOR_GREEN"\n copying 'build.prop' into 'system/' directory... \n"$COLOR_GREEN
 	cp $PROJECT_ROOT/working/build.prop $PROJECT_ROOT/system/
 fi
@@ -416,7 +416,7 @@ fi
 # boot-animation
 
 if [ -e $PROJECT_ROOT/working/bootanimation.zip ]; then
-	sed -i "s;# set_perm-bootanimation;set_perm;" $PROJECT_ROOT/META-INF/com/google/android/updater-script;
+	sed -i "s;# set_perm-bootanimation;set_perm(1000, 1000, 0644, "/system/media/bootanimation.zip");" $PROJECT_ROOT/META-INF/com/google/android/updater-script;
 	if [ ! -d "$PROJECT_ROOT/system/media/" ]; then
 		mkdir $PROJECT_ROOT/system/media/
 	fi
