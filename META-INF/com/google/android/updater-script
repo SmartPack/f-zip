@@ -44,6 +44,7 @@ ui_print("Setting permissions...");
 # set_perm_jar;
 # set_perm-fwr;
 # set_perm-bootanimation;
+# set_perm-mixerpaths;
 # set_perm-buildprop;
 run_program("/sbin/busybox", "umount", "/system");
 ui_print(" ");
